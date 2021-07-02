@@ -15,6 +15,11 @@
     </p>
 
     <ng-content></ng-content>
+
+    <p>
+      <a class="btn btn-default" [routerLink]="['/flight-edit', item.id, { showDetails: true }]">Edit</a>
+      <!--<a class="btn btn-default" (click)="onEdit(item.id)">Edit</a>-->
+    </p>
   </div>
 </div>
 
