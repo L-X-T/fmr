@@ -1,36 +1,14 @@
 # Angular Workshop: Building-Blocks
 
-- [Angular Workshop: Building-Blocks](#angular-workshop-building-blocks)
-  - [Ihre erste Angular-Komponente](#ihre-erste-angular-komponente)
-    - [Komponente zum Suchen nach Flügen](#komponente-zum-suchen-nach-flügen)
-    - [Den Debugger verwenden](#den-debugger-verwenden)
-    - [Bonus: Flüge editieren *](#bonus-flüge-editieren-)
-  - [Bonus: Passagiere suchen und editieren \*\*](#bonus-passagiere-suchen-und-editieren-)
-  - [Eigenen Services erstellen](#eigenen-services-erstellen)
-    - [FlightService](#flightservice)
-    - [Bonus: Alternative Implementierung *](#bonus-alternative-implementierung-)
-    - [Bonus: useFactory **](#bonus-usefactory-)
-  - [Eigene Pipe erstellen](#eigene-pipe-erstellen)
-  - [Bonusaufgaben zu Pipes](#bonusaufgaben-zu-pipes)
-    - [Bonus: StatusColorPipe *](#bonus-statuscolorpipe-)
-    - [Bonus: StatusFilterPipe \*](#bonus-statusfilterpipe-)
-    - [Bonus: Service für Pipe \*](#bonus-service-für-pipe-)
-    - [Bonus: Asynchroner Service für Pipe **](#bonus-asynchroner-service-für-pipe-)
-  - [Module](#module)
-  - [Komponenten](#komponenten)
-    - [FlightCardComponent](#flightcardcomponent)
-    - [Bonus: FlightStatusToggleComponent \*\*](#bonus-flightstatustogglecomponent-)
-    - [Bonus: Content Projection **](#bonus-content-projection-)
+## Your first Angular component
 
-## Ihre erste Angular-Komponente
+### Component for searching for flights
 
-### Komponente zum Suchen nach Flügen
+In this first part of the exercise you will implement the _FlightSearchComponent_. You can follow these tutorial steps or do it your own way and just look up here for reference:
 
-In diesem Teil der Übung werden Sie die präsentierte _FlightSearchComponent_ implementieren. Sie können dazu den nachfolgenden Anweisungen schrittweise folgen oder lediglich bei Bedarf nachschlagen.
+1. Create a folder _entities_ in your _src/app_ folder.
 
-1. Erzeugen Sie im Ordner _src/app_ einen Ordner _entities_.
-
-1. Erzeugen Sie im neuen Ordner _entities_ eine Datei _flight.ts_:
+2. In _entities_ create a new file _flight.ts_:
 
       ```TypeScript
       export interface Flight {
@@ -41,32 +19,33 @@ In diesem Teil der Übung werden Sie die präsentierte _FlightSearchComponent_ i
         delayed: boolean;
       }
       ```
-2. Erzeugen Sie im Ordner _src/app_ eine _FlightSearchComponent_
+   
+3. In the folder _src/app_ create a _FlightSearchComponent_
 
-    **Wichtig:** Es existieren mehrere Möglichkeiten zum Genieren von Komponenten:
+    **Important:** There are several ways to generate a component:
 
-      - **Visual Studio Code:** Wenn Sie die oben erwähnten Plugins installiert haben, finden Sie im Kontextmenü Ihrer Ordner einen Befehl ``Angular: Generate a Component``.  
-      - **WebStorm/IntelliJ**: Hier finden Sie im Kontextmenü Ihrer Ordner einen Befehl ``Angular Schematics``.
-      - **Kommandozeile**: Mit der CLI können Sie auf der Kommandozeile Komponenten erzeugen. Wechseln Sie dazu ins Root Ihres Projektes und geben Sie den folgenden Befehl ein:
+      - **Visual Studio Code:** If you have installed the recommended Angular plugins go to context menu: ``Angular: Generate a Component``.  
+      - **WebStorm/IntelliJ**: Here you'll find in your context menu the item ``Angular Schematics``.
+      - **Terminal/Shell**: Or you can do it in your terminal/shell by using the following commands:
       
           ```
           ng generate component flight-search
           ```
 
-          Die Kurzform hierfür lautet:
+          Or use the shorthand:
 
           ```
           ng g c flight-search
           ```
 
-          Mit dem Schalter --help erhält man Informationen zu allen Optionen:
+          With the flag --help you'll see the information for these command parts:
 
           ```
           ng g --help
           ng g c --help
           ```
 
-3. Öffnen Sie die Datei _flight-search.component.ts_ und vergeben Sie den Selektor _flight-search_:
+4. Open the file _flight-search.component.ts_ and choose the selector _flight-search_:
 
     ```TypeScript
     @Component({
@@ -77,7 +56,7 @@ In diesem Teil der Übung werden Sie die präsentierte _FlightSearchComponent_ i
       […]
     }
     ```
-4. Spendieren Sie der Klasse _FlightSearchComponent_ die folgenden Member:
+5. Add the following members to your class _FlightSearchComponent_:
 
     ```TypeScript
     @Component({
@@ -88,33 +67,31 @@ In diesem Teil der Übung werden Sie die präsentierte _FlightSearchComponent_ i
 
       from: string;
       to: string;
-      flights: Array<Flight> = [];
+      flights: Flight[] = [];
       selectedFlight: Flight;
 
-      constructor(private http: HttpClient) {
-      }
+      constructor(private http: HttpClient) { }
 
       ngOnInit() { }
 
       search(): void {
-        // Implementierung wird gleich ergänzt
+        // implementation will follow shortly
       }
 
-      select(f: Flight): void {
-        this.selectedFlight = f;
+      select(flight: Flight): void {
+        this.selectedFlight = flight;
       }
     }
     ```
 
-5. Implementieren Sie die Methode _search_, sodass sie anhand der Parameter _from_ und _to_ mit dem injizierten ``HttpClient`` nach Flügen sucht und das Ergebnis in ``flights`` ablegt.
+6. Now implement the method _search_, so that it takes the _from_ and _to_ parameter and uses the injected ``HttpClient`` to search for flights and put them into ``flights``.
 
     <details>
-    <summary>Code anzeigen</summary>
+    <summary>Show source</summary>
     <p>
 
     ```TypeScript
     search(): void {
-
       let url = 'http://www.angular.at/api/flight';
 
       let headers = new HttpHeaders()
@@ -139,7 +116,7 @@ In diesem Teil der Übung werden Sie die präsentierte _FlightSearchComponent_ i
  </p>
  </details>
 
-6. Wechseln Sie in die Datei ``flight-search.component.html``, welche das dazugehörige Template repräsentiert und fügen Sie einen Abschnitt mit einem Suchformular ein. Sie können dazu das folgende HTML, das Sie jedoch **noch um Datenbindungsausdrücke** erweitern müssen, verwenden:
+7.  Switch to ``flight-search.component.html``, the corresponding HTML template and insert a div with the search form. You can use the following HTML, but you have to add the **data binding**:
 
     ```HTML
     <div class="card">
@@ -170,10 +147,10 @@ In diesem Teil der Übung werden Sie die präsentierte _FlightSearchComponent_ i
     </div>
     ```
    
-7. Stellen Sie auch sicher, dass die Schaltfläche nur zur Verfügung steht, wenn ``from`` und ``to`` einen Wert aufweisen.
+8. Make sure the button is only enabled if ``from`` and ``to`` are set.
 
     <details>
-    <summary>Code inkl. Datenbindungsausdrücken anzeigen</summary>
+    <summary>Show source inkl. data bindings</summary>
     <p>
 
     ```HTML
@@ -209,10 +186,8 @@ In diesem Teil der Übung werden Sie die präsentierte _FlightSearchComponent_ i
 
     </p>
     </details>
-
-
-
-1. Ergänzen Sie am Ende des Templates einen weiteren Abschnitt, der die gefundenen Flüge in einer Tabelle auflistet. Sie können dazu das folgende HTML-Fragment, das Sie **jedoch noch um Datenbindungsausdrücke erweitern müssen** verwenden:
+   
+9. Add another section to your template that lists the found flights in a table. Again you can use this HTML fragment, but you have to add the **data binding**:
 
     ```HTML
     <div class="card">
@@ -241,10 +216,10 @@ In diesem Teil der Übung werden Sie die präsentierte _FlightSearchComponent_ i
     </div>
     ```
 
-    Die ausgewählte Zeile soll mit der Klasse ``active`` hervorgehoben werden. Wurden keine Flüge gefunden, soll die Tabelle nicht angezeigt werden.
+    The selected row should receive the class ``active`` and thus be highlighted. If no flights were found the table should be hidden.
 
     <details>
-    <summary>Code inkl. Datenbindungsausdrücke anzeigen</summary>
+    <summary>Show source incl. data binding</summary>
     <p>
 
     ```HTML
@@ -278,46 +253,45 @@ In diesem Teil der Übung werden Sie die präsentierte _FlightSearchComponent_ i
     </p>
     </details>
 
-2. Fügen Sie einen dritten Abschnitt zum Template hinzu. Dieser soll den selektierten Flug präsentieren:
+10. Add a third section to your template. It should present the selected flight:
 
-    ```HTML
-    <div class="card">
-      <div class="content">
-      <!-- {{title}} --> <!-- Alte Zeile  -->
-      <pre>{{ selectedFlight | json }}</pre> <!-- neue Zeile --> 
-      </div>
-    </div>
-    ```
+     ```HTML
+     <div class="card">
+       <div class="content">
+       <!-- {{title}} --> <!-- old row  -->
+       <pre>{{ selectedFlight | json }}</pre> <!-- new row --> 
+       </div>
+     </div>
+     ```
 
-3. Öffnen Sie die Datei _app.module.ts_ und vergewissern Sie sich, dass die neue _FlightSearchComponent_ unter _declarations_ registriert wird.
+11. Open the file _app.module.ts_ make sure, that the new _FlightSearchComponent_ is registered in _declarations_.
 
-    <details>
-    <summary>Code anzeigen</summary>
-    <p>
+     <details>
+     <summary>Show source</summary>
+     <p>
 
-    ```TypeScript
-    @NgModule({
-      imports: [
-        BrowserModule,
-        FormsModule,
-        HttpClientModule
-      ],
-      declarations: [
-        AppComponent,
-        FlightSearchComponent,
-        […] // keep the rest here
-      ],
-      providers: [],
-      bootstrap: [AppComponent]
-    })
-    export class AppModule { }
-    ```
+     ```TypeScript
+     @NgModule({
+       imports: [
+         BrowserModule,
+         FormsModule,
+         HttpClientModule
+       ],
+       declarations: [
+         AppComponent,
+         FlightSearchComponent,
+         […] // keep the rest here
+       ],
+       providers: [],
+       bootstrap: [AppComponent]
+     })
+     export class AppModule { }
+     ```
 
-    </p>
-    </details>
+     </p>
+     </details>
 
-
-4.  Wechseln Sie in die Datei _app.component.html_, um dort die neue Komponente aufzurufen:
+12. Switch to the file _app.component.html_, to call the new component:
 
     ```HTML
     […]
@@ -327,23 +301,23 @@ In diesem Teil der Übung werden Sie die präsentierte _FlightSearchComponent_ i
     […]
     ```
 
-5.  Prüfen Sie, ob Kompilierungsfehler auf der Konsole angezeigt werden.
+13. Check for compilation errors on the console.
 
-6.  Starten Sie die Lösung wie weiter oben im Rahmen der Einführung gezeigt (``npm start``) und testen Sie sie im Browser, indem Sie nach Flügen von ``Graz`` nach ``Hamburg`` suchen. Eine Liste mit weiteren möglichen Städten finden Sie [hier](http://angular.at/api/airport).
+14. Start your solution (``npm start``) and test it in the browser by search for flights from ``Graz`` to ``Hamburg``. A list with other supported (European) cites can be found [here](http://angular.at/api/airport).
 
-### Den Debugger verwenden
+### Use the debugger
 
-1. Öffnen Sie in Chrome die Developer-Tools (F12).
+1. In Chrome, open the Developer Tools (F12).
 
-2. Wechseln Sie in das Registerblatt Source und schließen Sie dort alle Dateien.
+2. Switch to the Source tab and close all files there.
 
-1. Drücken Sie STRG+P und tippen Sie den Namen _flight-search.component_ ein.
+3. Press STRG+P and search for _flight-search.component_.
 
-2. Erstellen Sie am Beginn Ihrer _search_-Methode einen Breakpoint.
+4. Create a breakpoint in your _search_ method.
 
-1. Suchen Sie nach Flügen und stellen Sie fest, dass der Browser die Ausführung beim Breakpoint anhält.
+5. Look for flights and find that the browser stops execution at your breakpoint.
 
-2. Betrachten Sie die Informationen, die der Debugger zu den einzelnen Variablen liefert. Diese werden beim Mouse-Over angezeigt und gehen Sie Schritt für Schritt durch Ihre Methode durch.
+6. Take a look at the information the debugger provides about each variable. These are displayed when you mouse-over and go through your method step by step.
 
 ### Bonus: Flüge editieren *
 
@@ -354,7 +328,7 @@ Gehen Sie dazu wie folgt vor:
 1. Führen Sie in Ihrer Komponente eine Eigenschaft _message_ ein, über die Sie später den Benutzer über den Erfolg oder Misserfolg der Speichern-Operation informieren.
 
     <details>
-    <summary>Code anzeigen</summary>
+    <summary>Show source</summary>
     <p>
 
     ```TypeScript
@@ -383,7 +357,7 @@ Gehen Sie dazu wie folgt vor:
     ```
 
     <details>
-    <summary>Code anzeigen</summary>
+    <summary>Show source</summary>
     <p>
     
     ```TypeScript
@@ -441,7 +415,7 @@ Gehen Sie dazu wie folgt vor:
     ```
 
     <details>
-    <summary>Code inkl. Datenbindungsausdrücke anzeigen</summary>
+    <summary>Show source incl. data binding</summary>
     <p>
     
     ```HTML
@@ -510,7 +484,7 @@ Sie können dazu den nachfolgenden Punkten folgen oder nur bei Bedarf nachschlag
 1. Implementieren Sie in dieser Datei einen _FlightService_, der die von der Anwendung benötigten Flüge abruft. Dieser muss sich zum Verrichten seiner Aufgabe den _HttpClient_ injizieren lassen.
 
     <details>
-    <summary>Code anzeigen</summary>
+    <summary>Show source</summary>
     <p>
     
     ```TypeScript
@@ -542,7 +516,7 @@ Sie können dazu den nachfolgenden Punkten folgen oder nur bei Bedarf nachschlag
     Falls Sie die Bonus-Aufgabe _Flüge editieren_ weiter oben gemacht haben, müssen Sie nun auch die Methode _save_ in den Service auslagern.
     
     <details>
-    <summary>Code anzeigen</summary>
+    <summary>Show source</summary>
     <p>
     
     ```TypeScript
@@ -563,7 +537,7 @@ Sie können dazu den nachfolgenden Punkten folgen oder nur bei Bedarf nachschlag
 2. Öffnen Sie die Datei _flight-search.component.ts_ und lassen Sie sich den neuen Service in den Konstruktor injizieren.
 
     <details>
-    <summary>Code anzeigen</summary>
+    <summary>Show source</summary>
     <p>
 
     ```TypeScript
@@ -581,7 +555,7 @@ Sie können dazu den nachfolgenden Punkten folgen oder nur bei Bedarf nachschlag
 1. Nutzen Sie den injizierten _FlightService_ in der Methode _search_ zum Suchen nach Flügen.
 
     <details>
-    <summary>Code anzeigen</summary>
+    <summary>Show source</summary>
     <p>
     
     ```TypeScript
@@ -665,7 +639,7 @@ Sie können dazu den nachfolgenden Punkten folgen oder nur bei Bedarf nachschlag
 3. Fordern Sie per Dependency Injection in Ihrer Komponente eine Instanz von _AbstractFlightService_ **anstatt* einer Instanz von _FlightService_ an:
 
     <details>
-    <summary>Code anzeigen</summary>
+    <summary>Show source</summary>
     <p>
 
     ```TypeScript
@@ -704,7 +678,7 @@ Sie können dazu den nachfolgenden Punkten folgen oder nur bei Bedarf nachschlag
 7. Lassen Sie nun Ihren ``AbstractFlightService`` auf den neuen ``DummyFlightService`` verweisen.
 
     <details>
-    <summary>Code anzeigen</summary>
+    <summary>Show source</summary>
     <p>
     
     ```typescript
@@ -772,7 +746,7 @@ Erstellen Sie in dieser Datei eine Konstante ``DEBUG``, welche entweder ``true``
 2. Erstellen Sie in diesem Ordner eine neue Datei _city.pipe.ts_ mit einer _CityPipe_. Diese Pipe soll die Städtenamen wie ``Graz`` oder ``Hamburg`` abhängig von einem übergebenen Parameter entweder auf Flughafencodes wie ``GRZ`` oder ``HAM`` oder auf Lanbezeichnungen wie ``Flughafen Graz Thalerhof`` oder ``Airport Hamburg Helmut Schmidt`` abbilden.
 
     <details>
-    <summary>Code anzeigen</summary>
+    <summary>Show source</summary>
     <p>
     
     ```TypeScript
@@ -819,7 +793,7 @@ Erstellen Sie in dieser Datei eine Konstante ``DEBUG``, welche entweder ``true``
 3. Öffnen Sie die Datei _app.module.ts_ und stellen Sie sicher, dass die neue Pipe registriert wurde.
 
     <details>
-    <summary>Code anzeigen</summary>
+    <summary>Show source</summary>
     <p>
 
     ```TypeScript
@@ -852,7 +826,7 @@ Erstellen Sie in dieser Datei eine Konstante ``DEBUG``, welche entweder ``true``
 1. Öffnen Sie die Datei _flight-search.component.html_ und nutzen Sie die _CityPipe_ zum Formatieren der Städte der gefundenen Flüge.
 
     <details>
-    <summary>Code anzeigen</summary>
+    <summary>Show source</summary>
     <p>
     
     ```TypeScript
@@ -1135,7 +1109,7 @@ In dieser Übung werden Sie zunächst die gezeigte FlightCardComponent erstellen
 1. Wechseln Sie in die Datei _flight-booking.module.ts_. Vergewissern Sie sich, dass hier die neue _FlightCardComponent_ registriert wird.
 
     <details>
-    <summary>Code anzeigen</summary>
+    <summary>Show source</summary>
     <p>
     
     ```TypeScript
@@ -1185,7 +1159,7 @@ In dieser Übung werden Sie zunächst die gezeigte FlightCardComponent erstellen
 1. Nutzen Sie anstatt der Tabelle die neue das Element ``flight-card`` um die gefundenen Flüge darzustellen. Erstellen Sie dazu eine explizite Bindung für die Eigenschaften ``item``, ``selected`` und ``selectedChange``.
 
     <details>
-    <summary>Code anzeigen</summary>
+    <summary>Show source</summary>
     <p>
 
     ```HTML
@@ -1208,7 +1182,7 @@ In dieser Übung werden Sie zunächst die gezeigte FlightCardComponent erstellen
 1. Aktualisieren Sie am Ende des Templates auch den Warenkorb, sodass hier die neue Eigenschaft ``basket`` anstatt von ``selectedFlight`` ausgegeben wird.
 
     <details>
-    <summary>Code anzeigen</summary>
+    <summary>Show source</summary>
     <p>
     
     ```HTML
@@ -1227,7 +1201,7 @@ In dieser Übung werden Sie zunächst die gezeigte FlightCardComponent erstellen
 1. Nutzen Sie beim Aufruf der _FlugCardComponent_ anstatt der Bindings für _selected_ und _selectedChanged_ ein Two-Way-Binding unter Verwendung der "Banana-in-a-Box-Syntax".
 
     <details>
-    <summary>Code anzeigen</summary>
+    <summary>Show source</summary>
     <p>
 
     ```TypeScript

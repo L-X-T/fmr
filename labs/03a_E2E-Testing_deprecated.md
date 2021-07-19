@@ -39,7 +39,7 @@
 1. Erstellen Sie im Ordner ``/e2e/src`` die neue Datei ``check-page-title.e2e-spec.ts`` und implementieren Sie einen Test, der den Title der Angular Wep App prüft.
 
     <details>
-    <summary>Code anzeigen</summary>
+    <summary>Show source</summary>
     <p>
 
     ```typescript
@@ -78,7 +78,7 @@
 1. Erstellen Sie im Ordner ``/e2e/src`` die neue Datei ``flight-search.e2e-spec.ts`` und implementieren Sie einen Test, der die Flug Suche testet.
 
     <details>
-    <summary>Code anzeigen</summary>
+    <summary>Show source</summary>
     <p>
 
     ```typescript
@@ -125,7 +125,7 @@
 1. Implementieren Sie einen Test der prüft wie viele Flüge gefunden werden. Passen Sie den Erwartungswert an das reale Suchergebnis an.
 
     <details>
-    <summary>Code anzeigen</summary>
+    <summary>Show source</summary>
     <p>
 
     ```typescript
@@ -148,7 +148,7 @@
 1. Implementieren Sie einen Test der prüft ob die erwartete Hintergrundfarbe angezeigt wird
 
     <details>
-    <summary>Code anzeigen</summary>
+    <summary>Show source</summary>
     <p>
 
     ```typescript
@@ -186,7 +186,7 @@
 1. Implementieren Sie einen Test der prüft ob der Search Button deaktiviert wird, falls die Property "from" nicht gesetzt ist. 
 
     <details>
-    <summary>Code anzeigen</summary>
+    <summary>Show source</summary>
     <p>
 
     ```typescript
@@ -213,7 +213,7 @@
 2. Implementieren Sie einen Test der prüft ob der Search Button aktiviert wird, falls die Properties "from" und "to" gesetzt sind. 
 
     <details>
-    <summary>Code anzeigen</summary>
+    <summary>Show source</summary>
     <p>
 
     ```typescript

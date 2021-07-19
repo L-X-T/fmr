@@ -31,7 +31,7 @@ Tip: Install and checkout the following useful tools for developing with Angular
 
 1. Pull the starter kit:
 
-    https://github.com/L-X-T/uni-muenster
+    https://github.com/L-X-T/fmr
 
     If you are using Linux or OS X, you should add the execution flag (x) to all files in the folder `node_modules\.bin` with `chmod`: ``chmod -R +x  node_modules``.
 
@@ -57,18 +57,18 @@ Tip: Install and checkout the following useful tools for developing with Angular
 
 > If you are using IntelliJ/WebStorm, you can skip this section.
 
-In this part of the exercise, you will extract the starter kit (``starter.zip``) and run it.
+In this part of the exercise, you will extract the starter kit (``fmr.zip``) and run it.
 
 Tip: Install the following useful plugins for developing with Angular:
 
 - [Angular Context Creator](https://marketplace.visualstudio.com/items?itemName=sjuulwijnia.kx-vscode-angular-context-creator)
 - [Angular Language Service](https://marketplace.visualstudio.com/items?itemName=Angular.ng-template)
 
-In this part of the tutorial, you will pull (or download & extract uni-muenster.zip) the starter kit and run it.
+In this part of the tutorial, you will pull (or download & extract fmr.zip) the starter kit and run it.
 
 1. Pull the starter kit:
 
-    https://github.com/L-X-T/uni-muenster
+    https://github.com/L-X-T/fmr
 
     If you are using Linux or OS X, you should use `chmod` to add the execution flag (x) to all files in the `node_modules/.bin` folder: ``chmod -R +x  node_modules``.
 

@@ -18,7 +18,7 @@ In dieser Übung erstellen Sie ein reaktives Formular zum Bearbeiten von Flügen
 2. Importieren Sie das ``ReactiveFormsModule`` in Ihrem ``FlightBookingModule``.
 
     <details>
-    <summary>Code anzeigen</summary>
+    <summary>Show source</summary>
     <p>
 
     ```typescript
@@ -44,7 +44,7 @@ In dieser Übung erstellen Sie ein reaktives Formular zum Bearbeiten von Flügen
 3. Spendieren Sie Ihrer ``FlightEditComponent`` eine FormGroup mit dem Namen ``editForm``.
 
     <details>
-    <summary>Code anzeigen</summary>
+    <summary>Show source</summary>
     <p>
     
     ```typescript
@@ -68,7 +68,7 @@ In dieser Übung erstellen Sie ein reaktives Formular zum Bearbeiten von Flügen
 4. Lassen Sie sich den FormBuilder in die ``FlightEditComponent`` injizieren.
 
     <details>
-    <summary>Code anzeigen</summary>
+    <summary>Show source</summary>
     <p>
     
     ```typescript
@@ -92,7 +92,7 @@ In dieser Übung erstellen Sie ein reaktives Formular zum Bearbeiten von Flügen
 5. Nutzen Sie den ``FormsBuilder`` in der Methode ``ngOnInit`` um eine ``FormGroup`` zu erzeugen, die einen Flug beschreibt. Legen Sie diese in ``editForm`` ab.
 
     <details>
-    <summary>Code anzeigen</summary>
+    <summary>Show source</summary>
     <p>
     
     ```typescript
@@ -118,7 +118,7 @@ In dieser Übung erstellen Sie ein reaktives Formular zum Bearbeiten von Flügen
 6. Erkunden Sie mit der Codevervollständigung Ihrer IDE/ Ihres Editors die Methoden von ``editForm``. Geben Sie zur Demonstration die Eigenschaften ``value``, ``valid``, ``touched`` und ``dirty`` auf der Konsole aus. 
     
     <details>
-    <summary>Code anzeigen</summary>
+    <summary>Show source</summary>
     <p>
 
     ```typescript
@@ -142,7 +142,7 @@ In dieser Übung erstellen Sie ein reaktives Formular zum Bearbeiten von Flügen
 7. Registrieren Sie sich bei ``editForm`` zusätzlich für ``valueChanges`` und geben Sie den erhaltenen Wert auch auf der Konsole aus, um sich über Änderungen am Formular am Laufenden zu halten.
 
     <details>
-    <summary>Code anzeigen</summary>
+    <summary>Show source</summary>
     <p>
 
     ```typescript
@@ -165,7 +165,7 @@ In dieser Übung erstellen Sie ein reaktives Formular zum Bearbeiten von Flügen
 8. Wechseln Sie nun in die Datei ``flight-edit.component.html``. Erzeugen Sie dort ein Formular, dass Sie mit der ``FormGroups`` in der Eigenschaft ``editForm`` verknüpfen.
 
     <details>
-    <summary>Code anzeigen</summary>
+    <summary>Show source</summary>
     <p>
 
     ```html
@@ -209,7 +209,7 @@ In dieser Übung werden Sie das Feld from mit den Standardvalidatoren ``required
 1. Wechseln Sie in die Datei flight-edit.component.ts und geben Sie beim Einrichten der FormGroup an, dass die Eigenschaft from mit ``required`` und ``minlength`` zu validieren ist. Letzterer Validator soll sicherstellen, dass zumindest drei Zeichen erfasst werden.
 
     <details>
-    <summary>Code anzeigen</summary>
+    <summary>Show source</summary>
     <p>
 
     ```typescript		
@@ -232,7 +232,7 @@ In dieser Übung werden Sie das Feld from mit den Standardvalidatoren ``required
 2. Wechseln Sie in die Datei ``flight-edit.component.html`` und geben Sie dort die Eigenschaft ``errors`` des Controls ``from`` aus.
  
     <details>
-    <summary>Code anzeigen</summary>
+    <summary>Show source</summary>
     <p>
 
     ```TypeScript
@@ -247,7 +247,7 @@ In dieser Übung werden Sie das Feld from mit den Standardvalidatoren ``required
 3. Nutzen Sie auch die Methode ``hasError`` des Controls, um herauszufinden, ob der Fehler ``minlength`` aufgetreten ist.
 
     <details>
-    <summary>Code anzeigen</summary>
+    <summary>Show source</summary>
     <p>
 
     ```TypeScript
@@ -270,7 +270,7 @@ In dieser Übung werden Sie einen eigenen Validator, der erfasste Städte gegen 
 2. Erstellen Sie im Ordner ``validation`` eine Datei ``city-validator.ts``. Platzieren Sie dort eine Validierungs-Funktion ``validateCity``, die ein ``AbstractControl`` entgegennimmt, die erfasste Stadt gegen hardcodierte Werte prüft und ein Fehlerbeschreibungsobjekt zurückliefert.
 
     <details>
-    <summary>Code anzeigen</summary>
+    <summary>Show source</summary>
     <p>
 
     ```typescript
@@ -296,7 +296,7 @@ In dieser Übung werden Sie einen eigenen Validator, der erfasste Städte gegen 
 3. Wechseln Sie in die Datei ``flight-edit.component.ts`` und registrieren Sie dort die neue Validierungsfunktion für das Feld ``from``.
 
     <details>
-    <summary>Code anzeigen</summary>
+    <summary>Show source</summary>
     <p>
 
     ```typescript
@@ -322,7 +322,7 @@ In dieser Übung werden Sie einen eigenen Validator, der erfasste Städte gegen 
 4. Wechseln Sie in die Datei ``flight-edit.component.html`` und prüfen Sie, ob der benutzerdefinierte Fehler ``city`` aufgetreten ist. Geben Sie in diesem Fall eine Fehlermeldung aus.
 
     <details>
-    <summary>Code anzeigen</summary>
+    <summary>Show source</summary>
     <p>
 
     ```html
@@ -345,7 +345,7 @@ In dieser Übung werden Sie den Validator aus der letzten Übung parametrisierba
 1. Wechseln Sie in die Datei ``city-validator.ts`` und erweitern Sie die Funktion ``validateCity``, sodass Sie eine Whitelist mit Städtenamen als String-Array entgegen nimmt und die eigentliche Validierungsfunktion zurückliefert.
 
     <details>
-    <summary>Code anzeigen</summary>
+    <summary>Show source</summary>
     <p>
 
     ```typescript
@@ -372,7 +372,7 @@ In dieser Übung werden Sie den Validator aus der letzten Übung parametrisierba
 2. Öffnen Sie die Datei ``flight-edit.component.ts`` und aktualisieren Sie hier die Nutzung von ``validateCity``, sodass eine Whitelist übergeben wird.
 
     <details>
-    <summary>Code anzeigen</summary>
+    <summary>Show source</summary>
     <p>
 
     ```typescript
@@ -399,7 +399,7 @@ In dieser Übung werden Sie einen Multifield-Validator schreiben, der sicherstel
 2. Spendieren Sie dieser neuen Datei eine Validierungsfunktion ``validateRoundTrip``, welche eine ``FormGroup`` entgegennimmt, deren Controls ``from`` und ``to`` ermittelt sowie - falls diese existieren - prüft, ob sie den selben Wert aufweisen.
 
     <details>
-    <summary>Code anzeigen</summary>
+    <summary>Show source</summary>
     <p>
 
     ```typescript
@@ -424,7 +424,7 @@ In dieser Übung werden Sie einen Multifield-Validator schreiben, der sicherstel
 3. Wechseln Sie in die Datei ``flight-edit.component.ts`` und registrieren Sie den neuen Validator bei der ``FormGroup``.
 
     <details>
-    <summary>Code anzeigen</summary>
+    <summary>Show source</summary>
     <p>
 
     ```typescript
@@ -450,7 +450,7 @@ In dieser Übung werden Sie einen Multifield-Validator schreiben, der sicherstel
 4. Öffnen Sie die Datei ``flight-edit.component.html`` und prüfen Sie, ob der Fehler ``rountTrip`` aufgetreten ist. Geben Sie in diesem Fall eine Fehlermeldung aus.
 
     <details>
-    <summary>Code anzeigen</summary>
+    <summary>Show source</summary>
     <p>
 
     ```html

@@ -17,7 +17,7 @@ Falls noch vorhanden, löschen alle ``.spec.ts``-Dateien. Diese Dateien enthalte
 In dieser Übung erstellen Sie einen Unit-Test in einer neuen Datei ``flight-search.spec.ts``. Dieser Unit-Test konfiguriert in ``beforeEach`` das Testing Module im ``TestBed`` und prüft anschließend, ob die ``FlightSearchComponent`` nach der Erzeugung (noch) keine gefundenen Flüge aufweist.
 
 <details>
-<summary>Code anzeigen</summary>
+<summary>Show source</summary>
 <p>
 
 ```typescript
@@ -91,7 +91,7 @@ Sie können sich dabei am folgenden Ablauf orientieren:
 2. Öffnen Sie die Datei ``flight-search.spec.ts`` und fügen Sie am Beginn ein Mock-Objekt für den ``FlightService`` ein.
 
     <details>
-    <summary>Code anzeigen</summary>
+    <summary>Show source</summary>
     <p>
 
     ```TypeScript
@@ -126,7 +126,7 @@ Sie können sich dabei am folgenden Ablauf orientieren:
     > Falls Sie aufgrund einer Bonus-Übung einen ``AbstractFlightService`` als Token verwenden, müssen Sie den Mock daran binden.
 
     <details>
-    <summary>Code anzeigen</summary>
+    <summary>Show source</summary>
     <p>
     
     ```TypeScript
@@ -167,7 +167,7 @@ Sie können sich dabei am folgenden Ablauf orientieren:
 4. Implementieren Sie einen Test ``should not load flights w/o from and to`` und einen weiteren Test ``should not load flights w/ from and to``. Diese sollen das eingangs beschriebene Verhalten prüfen.
 
     <details>
-    <summary>Code anzeigen</summary>
+    <summary>Show source</summary>
     <p>
 
     ```TypeScript
@@ -211,7 +211,7 @@ In dieser Übung werden Sie den HttpClient durch einen Dummy, den Angular über 
 1. Importieren Sie in Ihr TestBed anstatt des ``HttpClientModule``s das ``HttpClientTestingModule``:
 
     <details>
-    <summary>Code anzeigen</summary>
+    <summary>Show source</summary>
     <p>
 
     ```typescript
@@ -241,7 +241,7 @@ In dieser Übung werden Sie den HttpClient durch einen Dummy, den Angular über 
 1. Testen Sie, ob die Methode ``search`` Flüge lädt. Nutzen Sie den ``HttpTestingController`` um eine Http-Antwort zu simulieren:
 
     <details>
-    <summary>Code anzeigen</summary>
+    <summary>Show source</summary>
     <p>
 
     ```typescript

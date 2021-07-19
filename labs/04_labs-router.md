@@ -35,7 +35,7 @@ Falls Sie möchten, leiten Sie die folgenden Punkte durch die Übung:
 4. Erstellen Sie im Ordner ``src/app`` für Ihr ``AppModule`` eine Routen-Konfiguration ``app.routes.ts``.
 
     <details>
-    <summary>Code anzeigen</summary>
+    <summary>Show source</summary>
     <p>
 
     ```typescript
@@ -62,7 +62,7 @@ Falls Sie möchten, leiten Sie die folgenden Punkte durch die Übung:
 5. Öffnen Sie die Datei ``app.module.ts`` und importieren Sie das ``RouterModule`` von Angular. Geben Sie dabei die Routen-Konfiguration aus der Datei ``app.routes.ts`` an.
 
     <details>
-    <summary>Code anzeigen</summary>
+    <summary>Show source</summary>
     <p>
 
     ```TypeScript
@@ -99,7 +99,7 @@ Falls Sie möchten, leiten Sie die folgenden Punkte durch die Übung:
 6. Erzeugen Sie im Ordner ``src/app/flight-booking`` eine Datei ``flight-booking.routes.ts`` mit einer Routenkonfiguration für die ``FlightSearchComponent`` und die ``PassengerSearchComponent``.
 
     <details>
-    <summary>Code anzeigen</summary>
+    <summary>Show source</summary>
     <p>
 
     ```TypeScript
@@ -121,7 +121,7 @@ Falls Sie möchten, leiten Sie die folgenden Punkte durch die Übung:
 7. Öffnen Sie die Datei ``flight-booking.module.ts`` im Ordner ``src/app/flight-booking`` und importieren Sie das RouterModule. Geben Sie dabei die neue Routenkonfiguration an. Beachten Sie, dass hier die Methode **forChild** zum Einsatz kommt, weil es sich hierbei um ein Child-Module (Feature-Module) handelt.
 
     <details>
-    <summary>Code anzeigen</summary>
+    <summary>Show source</summary>
     <p>
 
     ```TypeScript
@@ -156,7 +156,7 @@ Falls Sie möchten, leiten Sie die folgenden Punkte durch die Übung:
 8.	Öffnen Sie die Datei ``app.component.html`` und ersetzen Sie den Aufruf von ``flight-search`` durch einen Platzhalter (``<router-outlet></router-outlet>``) für den Router.
 
     <details>
-    <summary>Code anzeigen</summary>
+    <summary>Show source</summary>
     <p>
 
     ```HTML
@@ -172,7 +172,7 @@ Falls Sie möchten, leiten Sie die folgenden Punkte durch die Übung:
 9. Öffnen Sie die Datei ``sidebar.component.html`` und aktualisieren Sie die Menüeinträge um das Attribut routerLink, um die einzelnen Routen zu aktivieren.
 
     <details>
-    <summary>Code anzeigen</summary>
+    <summary>Show source</summary>
     <p>
 
     ```HTML
@@ -238,7 +238,7 @@ Diese soll eine Id als Url-Segment und einen Matrix-Parameter showDetails entgeg
 3. Lassen Sie sich die ActivatedRoute in den Konstruktor der ``FlightEditComponent`` injizieren und rufen Sie die Matrix-Parameter ``id`` sowie ``showDetails`` ab.
 
     <details>
-    <summary>Code anzeigen</summary>
+    <summary>Show source</summary>
     <p>
 
     ```TypeScript
@@ -270,7 +270,7 @@ Diese soll eine Id als Url-Segment und einen Matrix-Parameter showDetails entgeg
 4. Öffnen Sie die Datei ``flight-edit.component.html`` und geben Sie dort die abgerufenen Parameter aus.
 
     <details>
-    <summary>Code anzeigen</summary>
+    <summary>Show source</summary>
     <p>
 
     ```HTML
@@ -291,7 +291,7 @@ Diese soll eine Id als Url-Segment und einen Matrix-Parameter showDetails entgeg
 5. Öffnen Sie die Datei ``flight-booking.routes.ts`` und fügen Sie eine Route für die neue ``FlightEditComponent`` hinzu.
 
     <details>
-    <summary>Code anzeigen</summary>
+    <summary>Show source</summary>
     <p>
 
     ```TypeScript
@@ -312,7 +312,7 @@ Diese soll eine Id als Url-Segment und einen Matrix-Parameter showDetails entgeg
 6. Öffnen Sie die Datei ``flight-card.component.html`` und fügen Sie einen Link für die neue Route ein.
 
     <details>
-    <summary>Code anzeigen</summary>
+    <summary>Show source</summary>
     <p>
     
     ```HTML
@@ -346,7 +346,7 @@ In dieser Übung schaffen Sie die Möglichkeit, den in der ``FlightEditComponent
     Beachten Sie, dass die Datensätze mit den Ids 1 bis 5 nicht gespeichert werden können, da sie Präsentationen vorbehalen sind. 
 
     <details>
-    <summary>Code anzeigen</summary>
+    <summary>Show source</summary>
     <p>
     
     ```TypeScript
@@ -374,7 +374,7 @@ In dieser Übung schaffen Sie die Möglichkeit, den in der ``FlightEditComponent
 2. Öffnen Sie die ``flight-edit.component.ts`` und fügen Sie eine Eigenschaft flight vom Type Flight und eine Eigenschaft errors vom Typ string ein. Diese Eigenschaft soll eventuelle Fehler, die sich beim Speichern ergeben, aufnehmen. Lassen Sie sich außerdem den FlightService injizieren.
 
     <details>
-    <summary>Code anzeigen</summary>
+    <summary>Show source</summary>
     <p>
 
     ```TypeScript
@@ -404,7 +404,7 @@ In dieser Übung schaffen Sie die Möglichkeit, den in der ``FlightEditComponent
 3. Laden Sie in der ``FlightEditComponent`` nach dem Abrufen des Parameters ``id`` den jeweiligen Flug und bieten Sie eine ``save``-Methode zum Speichern an. 
 
     <details>
-    <summary>Code anzeigen</summary>
+    <summary>Show source</summary>
     <p>
 
     ```TypeScript
@@ -472,7 +472,7 @@ In dieser Übung schaffen Sie die Möglichkeit, den in der ``FlightEditComponent
 5. Öffnen Sie die Datei ``flight-booking.module.ts`` und stellen Sie sicher, dass der ``FlightService`` hier registriert wird.
 
     <details>
-    <summary>Code anzeigen</summary>
+    <summary>Show source</summary>
     <p>
     
     ```TypeScript

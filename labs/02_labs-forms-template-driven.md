@@ -21,7 +21,7 @@ Sie können sich dabei am folgenden Ablauf orientieren:
 1. Stellen Sie sicher, dass sich die Suchfelder in einem ``form``-Element befinden und richten Sie für dieses Element ein Handle ein. Stellen Sie außerdem sicher, dass jedes Eingabefeld ein ``name``-Attribut hat.
 
     <details>
-    <summary>Code anzeigen</summary>
+    <summary>Show source</summary>
     <p>
 
     ```html
@@ -40,7 +40,7 @@ Sie können sich dabei am folgenden Ablauf orientieren:
 2. Erweitern Sie das Suchfeld ``from`` um die oben genannten Validierungsattribute und geben Sie eventuelle Validierungsfehler aus.
 
     <details>
-    <summary>Code anzeigen</summary>
+    <summary>Show source</summary>
     <p>
     
     ```html
@@ -124,7 +124,7 @@ Sie können sich dabei am folgenden Ablauf orientieren:
 1. Richten Sie in der Direktive einen Multi-Provider ein, der sie an das Token ``NG_VALIDATORS`` bindet.
 
     <details>
-    <summary>Code anzeigen</summary>
+    <summary>Show source</summary>
     <p>
     
     ```TypeScript
@@ -147,7 +147,7 @@ Sie können sich dabei am folgenden Ablauf orientieren:
 2. Lassen Sie die Direktive das Interface ``Validator`` implementieren. Prüfen Sie in der Methode ``validate`` ob es sich bei der Eingabe um die Städte ``Hamburg`` oder ``Graz`` handelt. In allen anderen Fällen soll ein Fehler gemeldet werden.
 
     <details>
-    <summary>Code anzeigen</summary>
+    <summary>Show source</summary>
     <p>
 
     ```TypeScript
@@ -178,7 +178,7 @@ Sie können sich dabei am folgenden Ablauf orientieren:
 3. Wechseln Sie in die ``FlightSearchComponent`` und wenden Sie die neue Validierungsdirektive auf das Feld ``from`` an. Geben Sie im Fehlerfall eine Meldung aus.
 
     <details>
-    <summary>Code anzeigen</summary>
+    <summary>Show source</summary>
     <p>
 
     ```html
@@ -213,7 +213,7 @@ Sie können dabei dem folgenden Ablauf folgen:
 1. Spendieren Sie der ``CityValidatorDirective`` eine mit ``@Input`` dekorierte Eigenschaft ``city`` vom Typ ``string[]``. Nutzen Sie diese Eigenschaft als Whitelist in der Methode ``validate``.
 
     <details>
-    <summary>Code anzeigen</summary>
+    <summary>Show source</summary>
     <p>
     
     ```TypeScript
@@ -264,7 +264,7 @@ Sie können sich dabei am folgenden Ablauf orientieren:
 1. Richten Sie in der Direktive einen Provider ein, der sie an das Token ``NG_ASYNC_VALIDATORS`` bindet.
 
     <details>
-    <summary>Code anzeigen</summary>
+    <summary>Show source</summary>
     <p>
     
     ```TypeScript
@@ -287,7 +287,7 @@ Sie können sich dabei am folgenden Ablauf orientieren:
 2. Lassen Sie sich in den Konstruktor dieser Direktive den FlightService injizieren.
 
     <details>
-    <summary>Code anzeigen</summary>
+    <summary>Show source</summary>
     <p>
     
     ```TypeScript
@@ -312,7 +312,7 @@ Sie können sich dabei am folgenden Ablauf orientieren:
     Mappen Sie das erhaltene Ergebnis mit der Methode ``map`` des Observables auf ein leeres Fehlerbeschreibungsobjekt, wenn Flüge gefunden wurden. Ansonsten mappen Sie es auf ein Objekt, dass den Fehler ``asyncCity`` anzeigt. Liefern Sie das von ``map`` erhaltene Observable zurück.
 
     <details>
-    <summary>Code anzeigen</summary>
+    <summary>Show source</summary>
     <p>
 
     ```TypeScript
@@ -345,7 +345,7 @@ Sie können sich dabei am folgenden Ablauf orientieren:
 3. Wechseln Sie in die ``FlightSearchComponent`` und wenden Sie die neue Validierungsdirektive auf das Feld ``from`` an. Geben Sie im Fehlerfall eine Meldung aus.
 
     <details>
-    <summary>Code anzeigen</summary>
+    <summary>Show source</summary>
     <p>
 
     ```html
@@ -369,7 +369,7 @@ Sie können sich dabei am folgenden Ablauf orientieren:
 3. Prüfen Sie auch mit der Eigenschaft ``pending`` des ``FormControls`` ob noch asynchrone Validierungen anstehen.
 
     <details>
-    <summary>Code anzeigen</summary>
+    <summary>Show source</summary>
     <p>
 
     ```html
