@@ -319,13 +319,13 @@ In this first part of the exercise you will implement the _FlightSearchComponent
 
 6. Take a look at the information the debugger provides about each variable. These are displayed when you mouse-over and go through your method step by step.
 
-### Bonus: Flüge editieren *
+### Bonus: Edit flights *
 
-Schaffen Sie die Möglichkeit, den ausgewählten Flug zu editieren. Dazu soll nach dem Auswählen unter der Tabelle ein Formular präsentiert werden.
+Create a possibility to edit the selected flight. Therefore you'll show a form after the selection. 
 
-Gehen Sie dazu wie folgt vor:
+Follow these steps:
 
-1. Führen Sie in Ihrer Komponente eine Eigenschaft _message_ ein, über die Sie später den Benutzer über den Erfolg oder Misserfolg der Speichern-Operation informieren.
+1. Add a member _message_ to your **existing** component, this will store either the success or the fail message.
 
     <details>
     <summary>Show source</summary>
@@ -348,7 +348,7 @@ Gehen Sie dazu wie folgt vor:
     </details>
 
 
-1. Erweitern Sie Ihre **bestehende** Komponente um eine Methode zum Speichern des ausgewählten Fluges. Diese soll mit dem ``HttpClient`` die Eigenschaft _selectedFlight_ per POST zum Server senden. Dazu weist der HttpClient eine Methode ``post`` auf:
+2. Add a method to your **existing** component for saving the selected flight. Use the ``HttpClient`` to POST the _selectedFlight_ back to the backend server (don't forget to subscribe):
  
     ```TypeScript
       this.http
@@ -386,7 +386,7 @@ Gehen Sie dazu wie folgt vor:
     </p>
     </details>
 
-1. Schaffen Sie im Template die Möglichkeit, den _selectedFlight_ zu editieren. Um Null-Zugriffe zu vermeiden, sollten Sie mit _\*ngIf_ prüfen, ob es einen selektierten Flug gibt. Sie können dazu das folgende HTML-Fragment, das Sie noch um Datenbindungsausdrücke erweitern müssen, verwenden:
+3. Create the option to edit the _selectedFlight_ in the template. In order to avoid zero accesses, you should check with _\*ngIf_ whether there is a selected flight. You can use the following HTML fragment, which you still need to add data binding expressions: 
 
     ```HTML
     <div *ngIf="selectedFlight">
@@ -447,25 +447,7 @@ Gehen Sie dazu wie folgt vor:
     </p>
     </details>
 
-
-
-1. Führen Sie die Anwendung aus und testen Sie sie. Beachten Sie, dass Sie die Datensätze mit den Ids 1 bis 5 nicht editieren können, damit diese Datensätze in jeder Demo zur Verfügung stehen. Um einen neuen Flug zu erzeugen, können Sie die Id 0 vergeben. Nach dem Speichern am Server wird diese durch die nächste freie Id ersetzt.
-
-## Bonus: Passagiere suchen und editieren \*\*
-
-Sie finden unter [http://www.angular.at/api/passenger](http://www.angular.at/api/passenger) eine weitere Web API, die als Ergänzung zu Flügen Passagiere anbietet. Infos über die unterstützen Verben und Datenstrukturen finden Sie unter [http://www.angular.at/help](http://www.angular.at/help). Beachten Sie bitte folgende Aspekte:
-
-- Als Suchparameter für Passagiere bietet sich ``name`` (= Familienname) und ``firstName`` an. Ersterer ist Pflicht, zweiterer ist optional: [http://www.angular.at/api/passenger?name=Muster](http://www.angular.at/api/passenger?name=Muster)
-- Mit POST können Sie Passagiere einfügen, wenn Sie die Id 0 vergeben.
-- Mit POST können Sie auch einen Passagier editieren, wenn Sie dessen Id angeben.
-- Die Passagiere mit den Ids 1 bis 5 können nicht gespeichert werden (sie sind Demos und Präsentationen vorbehalten).
-- Während für XML Pascal-Case (z. B. _PassagierStatus_) zum Einsatz kommt, verwendet die JSON-repräsentation das unter JavaScript übliche Camel-Case (z. B. _passagierStatus_). Damit wird den Gepflogenheiten der beiden Standards Rechnung getragen.
-
-Sie können nun Ihre Anwendung auch erweitern, sodass man Passagiere suchen und editieren kann.
-
-Falls Sie diese Erweiterung implementieren, können Sie sie in allen weiteren Übungen auch analog zur beschriebenen Funktionalität rund um Flüge erweitern.
-
-**Tipp:** Rufen Sie Ihre Passagier-Komponente vorerst einfach in der Datei ``app.component.html`` unterhalb von ``flight-search`` auf. Suchen Sie zum Testen nach Max Muster (firstname: Max, name: Muster).
+4. Run the application and test it. Note that you cannot edit the data records with IDs 1 to 5 so that these data records are available in every demo. You can assign ID 0 to create a new flight. After saving on the server, this will be replaced by the next free ID.
 
 ## Eigenen Services erstellen
 
