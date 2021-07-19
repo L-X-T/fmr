@@ -21,7 +21,7 @@ export class FlightSearchComponent implements OnInit {
   ngOnInit() {}
 
   search(): void {
-    let url = 'http://www.angular.at/api/flight';
+    let url = 'https://cors-anywhere.herokuapp.com/http://angular.at/api/flight';
 
     let headers = new HttpHeaders().set('Accept', 'application/json');
 
@@ -42,7 +42,7 @@ export class FlightSearchComponent implements OnInit {
   }
 
   save(): void {
-    const url = 'http://www.angular.at/api/flight';
+    const url = 'https://cors-anywhere.herokuapp.com/http://angular.at/api/flight';
 
     const headers = new HttpHeaders().set('Accept', 'application/json');
 
