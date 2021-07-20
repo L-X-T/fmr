@@ -1,5 +1,6 @@
 # Reactive Forms
 
+<!--
 - [Reactive Forms](#reactive-forms)
     - [Flüge editieren](#fl%C3%BCge-editieren)
     - [Standard-Validatoren nutzen](#standard-validatoren-nutzen)
@@ -8,8 +9,9 @@
     - [Multi-Field-Validatoren](#multi-field-validatoren)
     - [Bonus: Flug laden *](#bonus-flug-laden)
     - [Bonus: Flug speichern *](#bonus-flug-speichern)
+-->
 
-## Flüge editieren
+## Edit flights
 
 In dieser Übung erstellen Sie ein reaktives Formular zum Bearbeiten von Flügen.
 
@@ -202,7 +204,7 @@ In dieser Übung erstellen Sie ein reaktives Formular zum Bearbeiten von Flügen
 
 9. Testen Sie Ihre Lösung. Falls alles funktioniert, sollten Sie jede Änderung, die Sie am Formular vornehmen, auf der Konsole angezeigt bekommen.
 
-## Standard-Validatoren nutzen
+## Using Angular Validators
 
 In dieser Übung werden Sie das Feld from mit den Standardvalidatoren ``required`` und ``minlength`` validieren.
 
@@ -261,7 +263,7 @@ In dieser Übung werden Sie das Feld from mit den Standardvalidatoren ``required
     </p>
     </details>
 
-## Benutzerdefinierte Validatoren
+## Custom Validators
 
 In dieser Übung werden Sie einen eigenen Validator, der erfasste Städte gegen eine hardcodierte Whitelist prüft, für Ihr reaktives Formular schreiben. 
 
@@ -338,7 +340,7 @@ In dieser Übung werden Sie einen eigenen Validator, der erfasste Städte gegen 
 
 5. Testen Sie Ihre Lösung
 
-## Parametrisierbare Validatoren
+## Parametrizable Validatoren
 
 In dieser Übung werden Sie den Validator aus der letzten Übung parametrisierbar gestalten, sodass er die Eingaben gegen eine Whitelist, die als Parameter übergeben wird, prüft.
 
@@ -390,7 +392,7 @@ In dieser Übung werden Sie den Validator aus der letzten Übung parametrisierba
 
 3. Testen Sie Ihre Lösung.
 
-## Multi-Field-Validatoren
+## Multifield Validators
 
 In dieser Übung werden Sie einen Multifield-Validator schreiben, der sicherstellt, dass in den Feldern ``from`` und ``to`` ein unterschiedlicher Wert erfasst ist.
 
