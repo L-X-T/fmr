@@ -13,11 +13,11 @@
 
 ## Edit flights
 
-In dieser Übung erstellen Sie ein reaktives Formular zum Bearbeiten von Flügen.
+In this exercise, you will create a reactive form for editing flights.
 
-1. **Falls** Sie noch keine ``FlugEditComponent`` haben: Legen Sie eine ``FlugEditComponent`` im ``FlightBookingModule`` an und rufen Sie sie im Template der ``FlightSearchComponent`` auf.
+1. **If** you do not have a ``FlugEditComponent`` yet: Create a ``FlugEditComponent`` in the ``FlightBookingModule`` and call it up in the template of the ``FlightSearchComponent``.
 
-2. Importieren Sie das ``ReactiveFormsModule`` in Ihrem ``FlightBookingModule``.
+2. Import the ``ReactiveFormsModule`` into your ``FlightBookingModule``.
 
     <details>
     <summary>Show source</summary>
@@ -43,7 +43,7 @@ In dieser Übung erstellen Sie ein reaktives Formular zum Bearbeiten von Flügen
     </p>
     </details>
 
-3. Spendieren Sie Ihrer ``FlightEditComponent`` eine FormGroup mit dem Namen ``editForm``.
+3. Add a FormGroup with the name ``editForm`` to your ``FlightEditComponent``.
 
     <details>
     <summary>Show source</summary>
@@ -67,7 +67,7 @@ In dieser Übung erstellen Sie ein reaktives Formular zum Bearbeiten von Flügen
     </details>
 
 
-4. Lassen Sie sich den FormBuilder in die ``FlightEditComponent`` injizieren.
+4. Inject the FormBuilder into the ``FlightEditComponent``.
 
     <details>
     <summary>Show source</summary>
@@ -91,7 +91,7 @@ In dieser Übung erstellen Sie ein reaktives Formular zum Bearbeiten von Flügen
     </details>
 
 
-5. Nutzen Sie den ``FormsBuilder`` in der Methode ``ngOnInit`` um eine ``FormGroup`` zu erzeugen, die einen Flug beschreibt. Legen Sie diese in ``editForm`` ab.
+5. Use the ``FormsBuilder`` in the ``ngOnInit`` method to create a ``FormGroup`` that describes a flight. Add this to the ``editForm``.
 
     <details>
     <summary>Show source</summary>
@@ -117,7 +117,7 @@ In dieser Übung erstellen Sie ein reaktives Formular zum Bearbeiten von Flügen
     </details>
 
 
-6. Erkunden Sie mit der Codevervollständigung Ihrer IDE/ Ihres Editors die Methoden von ``editForm``. Geben Sie zur Demonstration die Eigenschaften ``value``, ``valid``, ``touched`` und ``dirty`` auf der Konsole aus. 
+6. With the code completion of your IDE/editor, explore the methods of editForm. For demonstration, output the properties ``value``, ``valid``, ``touched`` and ``dirty`` on the console.
     
     <details>
     <summary>Show source</summary>
@@ -141,7 +141,7 @@ In dieser Übung erstellen Sie ein reaktives Formular zum Bearbeiten von Flügen
     </p>
     </details>
 
-7. Registrieren Sie sich bei ``editForm`` zusätzlich für ``valueChanges`` und geben Sie den erhaltenen Wert auch auf der Konsole aus, um sich über Änderungen am Formular am Laufenden zu halten.
+7. Register for ``valueChanges`` on your ``editForm`` and output the received value on the console in order to keep up to date with changes to the form.
 
     <details>
     <summary>Show source</summary>
@@ -164,7 +164,7 @@ In dieser Übung erstellen Sie ein reaktives Formular zum Bearbeiten von Flügen
     </p>
     </details>
     
-8. Wechseln Sie nun in die Datei ``flight-edit.component.html``. Erzeugen Sie dort ein Formular, dass Sie mit der ``FormGroups`` in der Eigenschaft ``editForm`` verknüpfen.
+8. Now switch to the file ``flight-edit.component.html``. Create a form there that you can link to the ``FormGroups`` in the ``editForm`` property.
 
     <details>
     <summary>Show source</summary>
@@ -202,13 +202,13 @@ In dieser Übung erstellen Sie ein reaktives Formular zum Bearbeiten von Flügen
     </p>
     </details>
 
-9. Testen Sie Ihre Lösung. Falls alles funktioniert, sollten Sie jede Änderung, die Sie am Formular vornehmen, auf der Konsole angezeigt bekommen.
+9. Test your solution. If everything works, you should see every change you make to the form in the console output.
 
 ## Using Angular Validators
 
-In dieser Übung werden Sie das Feld from mit den Standardvalidatoren ``required`` und ``minlength`` validieren.
+In this exercise you will validate the _from_ field with the built-in validators ``required`` and ``minlength``.
 
-1. Wechseln Sie in die Datei flight-edit.component.ts und geben Sie beim Einrichten der FormGroup an, dass die Eigenschaft from mit ``required`` und ``minlength`` zu validieren ist. Letzterer Validator soll sicherstellen, dass zumindest drei Zeichen erfasst werden.
+1. Switch to the flight-edit.component.ts file and specify when setting up the FormGroup that the from property is to be validated with ``required`` and ``minlength``. The latter validator is intended to ensure that at least three characters are recorded.
 
     <details>
     <summary>Show source</summary>
@@ -231,7 +231,7 @@ In dieser Übung werden Sie das Feld from mit den Standardvalidatoren ``required
     </p>
     </details>
 
-2. Wechseln Sie in die Datei ``flight-edit.component.html`` und geben Sie dort die Eigenschaft ``errors`` des Controls ``from`` aus.
+2. Switch to the ``flight-edit.component.html`` file and enter the ``errors`` property of the ``from`` control there. You can use the built-in json pipe.
  
     <details>
     <summary>Show source</summary>
@@ -246,7 +246,7 @@ In dieser Übung werden Sie das Feld from mit den Standardvalidatoren ``required
     </p>
     </details> 
  
-3. Nutzen Sie auch die Methode ``hasError`` des Controls, um herauszufinden, ob der Fehler ``minlength`` aufgetreten ist.
+3. Also use the control's ``hasError`` method to find out whether the ``minlength`` error has occurred.
 
     <details>
     <summary>Show source</summary>
@@ -265,11 +265,11 @@ In dieser Übung werden Sie das Feld from mit den Standardvalidatoren ``required
 
 ## Custom Validators
 
-In dieser Übung werden Sie einen eigenen Validator, der erfasste Städte gegen eine hardcodierte Whitelist prüft, für Ihr reaktives Formular schreiben. 
+In this exercise, you will write your own validator for your reactive form, which checks the cities entered against a hard-coded whitelist.
 
-1. Erstellen Sie im Ordner ``shared`` einen Ordner ``validation`` (falls noch nicht vorhanden). 
+1. Create a ``validation`` folder in the ``shared`` folder (if it does not already exist).
 
-2. Erstellen Sie im Ordner ``validation`` eine Datei ``city-validator.ts``. Platzieren Sie dort eine Validierungs-Funktion ``validateCity``, die ein ``AbstractControl`` entgegennimmt, die erfasste Stadt gegen hardcodierte Werte prüft und ein Fehlerbeschreibungsobjekt zurückliefert.
+2. Create a city-validator.ts file in the validation folder. Place a validation function ``validateCity`` there, which receives an ``AbstractControl``, checks the recorded city against hard-coded values and returns an error description object.
 
     <details>
     <summary>Show source</summary>
@@ -295,7 +295,7 @@ In dieser Übung werden Sie einen eigenen Validator, der erfasste Städte gegen 
     </p>
     </details>
 
-3. Wechseln Sie in die Datei ``flight-edit.component.ts`` und registrieren Sie dort die neue Validierungsfunktion für das Feld ``from``.
+3. Switch to the ``flight-edit.component.ts`` file and register the new validation function for the ``from`` field there.
 
     <details>
     <summary>Show source</summary>
@@ -321,7 +321,7 @@ In dieser Übung werden Sie einen eigenen Validator, der erfasste Städte gegen 
     </p>
     </details>
 
-4. Wechseln Sie in die Datei ``flight-edit.component.html`` und prüfen Sie, ob der benutzerdefinierte Fehler ``city`` aufgetreten ist. Geben Sie in diesem Fall eine Fehlermeldung aus.
+4. Go to the file ``flight-edit.component.html`` and check whether the custom error ``city`` has occurred. In this case, issue an error message - you might use your previously created ``FieldValidationErrorsComponent`` again here
 
     <details>
     <summary>Show source</summary>
@@ -338,13 +338,13 @@ In dieser Übung werden Sie einen eigenen Validator, der erfasste Städte gegen 
     </p>
     </details>
 
-5. Testen Sie Ihre Lösung
+5. Test your solution
 
-## Parametrizable Validatoren
+## Parametrizable Validators
 
-In dieser Übung werden Sie den Validator aus der letzten Übung parametrisierbar gestalten, sodass er die Eingaben gegen eine Whitelist, die als Parameter übergeben wird, prüft.
+In this exercise, you will make the validator from the last exercise parameterizable so that it checks the entries against a whitelist that is passed as parameters.
 
-1. Wechseln Sie in die Datei ``city-validator.ts`` und erweitern Sie die Funktion ``validateCity``, sodass Sie eine Whitelist mit Städtenamen als String-Array entgegen nimmt und die eigentliche Validierungsfunktion zurückliefert.
+1. Switch to the ``city-validator.ts`` file and expand the ``validateCity`` function so that it accepts a whitelist with city names as a string array and returns the actual validation function.
 
     <details>
     <summary>Show source</summary>
@@ -371,7 +371,7 @@ In dieser Übung werden Sie den Validator aus der letzten Übung parametrisierba
     </p>
     </details>
 
-2. Öffnen Sie die Datei ``flight-edit.component.ts`` und aktualisieren Sie hier die Nutzung von ``validateCity``, sodass eine Whitelist übergeben wird.
+2. Open the file ``flight-edit.component.ts`` and update the use of ``validateCity`` here so that a whitelist is transferred.
 
     <details>
     <summary>Show source</summary>
@@ -390,15 +390,15 @@ In dieser Übung werden Sie den Validator aus der letzten Übung parametrisierba
     </p>
     </details>
 
-3. Testen Sie Ihre Lösung.
+3. Test your solution.
 
 ## Multifield Validators
 
-In dieser Übung werden Sie einen Multifield-Validator schreiben, der sicherstellt, dass in den Feldern ``from`` und ``to`` ein unterschiedlicher Wert erfasst ist.
+In this exercise you will write a multifield validator that ensures that a different value is recorded in the fields ``from`` and ``to``.
 
-1. Erstellen Sie unter shared/validation eine Datei ``round-trip-validator.ts``. 
+1. Create a file ``round-trip-validator.ts`` under shared / validation.
 
-2. Spendieren Sie dieser neuen Datei eine Validierungsfunktion ``validateRoundTrip``, welche eine ``FormGroup`` entgegennimmt, deren Controls ``from`` und ``to`` ermittelt sowie - falls diese existieren - prüft, ob sie den selben Wert aufweisen.
+2. Add a validation function to this new file called ``validateRoundTrip``, which receives a ``FormGroup``, determines its controls ``from`` and ``to`` and - if they exist - checks whether they have the same value.
 
     <details>
     <summary>Show source</summary>
@@ -423,7 +423,7 @@ In dieser Übung werden Sie einen Multifield-Validator schreiben, der sicherstel
     </p>
     </details>
 
-3. Wechseln Sie in die Datei ``flight-edit.component.ts`` und registrieren Sie den neuen Validator bei der ``FormGroup``.
+3. Switch to the ``flight-edit.component.ts`` file and register the new validator with the ``FormGroup``.
 
     <details>
     <summary>Show source</summary>
@@ -449,7 +449,7 @@ In dieser Übung werden Sie einen Multifield-Validator schreiben, der sicherstel
     </details>
 
 
-4. Öffnen Sie die Datei ``flight-edit.component.html`` und prüfen Sie, ob der Fehler ``rountTrip`` aufgetreten ist. Geben Sie in diesem Fall eine Fehlermeldung aus.
+4. Open the file ``flight-edit.component.html`` and check whether the error ``rountTrip`` has occurred. In this case, issue an error message.
 
     <details>
     <summary>Show source</summary>
@@ -466,16 +466,18 @@ In dieser Übung werden Sie einen Multifield-Validator schreiben, der sicherstel
     </p>
     </details>
 
-## Bonus: Flug laden *
+## Bonus: Load flight *
 
-Laden Sie einen beliebigen Flug, dessen id Sie vorerst mal als Konstante hinterlegen und schreiben Sie ihn in das Formular. Hierzu können Sie den Flug an die Methode ``patchValue`` von ``editForm`` übergeben.
+Load any flight whose id you save as a constant for the time being and write it in the form. To do this, you can transfer the flight to the ``patchValue`` method of ``editForm``.
 
-**Erweiterung**: **Falls** Sie schon Routing implementiert haben, können Sie auch die Id des Fluges über die Url entgegennehmen.
+<!--
+**Extension**: **If** you have already implemented routing, you can also receive the ID of the flight via the url.
+-->
 
-## Bonus: Flug speichern *
+## Bonus: Save flight *
 
-Richten Sie eine Schaltfläche zum Speichern ein. Diese soll den aktuellen Flug aus dem Formular abrufen (``editForm.value``) und ihn an eine ``save``-Methode des ``FlightService``s übergeben. 
+Create a save button. This should retrieve the current flight from the form (``editForm.value``) and transfer it to a ``save`` method of the ``FlightService``.
 
-Diese soll den Flug mit der ``post``-Methode des ``HttpClients`` zum Server senden (``http.post<Flight>(url, flight).subscribe(...)``).
+This should send the flight to the server with the ``post`` method of the ``HttpClient`` (``http.post<Flight>(url, flight).subscribe(...)``).
 
-**Bitte beachten Sie**, dass Sie Datensätze mit den Ids 1 bis 5 nicht speichern können. Diese sind Präsentationen vorbehalten. Um einen neuen Datensatz einzufügen, vergeben Sie die Id 0.
+**Please note** that you cannot save data sets with IDs 1 to 5. These are reserved for presentations. To insert a new data record, assign the ID 0.
