@@ -72,7 +72,7 @@ In this first part of the exercise you will implement the _FlightSearchComponent
 
       constructor(private http: HttpClient) { }
 
-      ngOnInit() { }
+      ngOnInit(): void { }
 
       search(): void {
         // implementation will follow shortly
@@ -92,25 +92,25 @@ In this first part of the exercise you will implement the _FlightSearchComponent
 
     ```TypeScript
     search(): void {
-      let url = 'http://www.angular.at/api/flight';
+      const url = 'http://www.angular.at/api/flight';
 
-      let headers = new HttpHeaders()
+      const headers = new HttpHeaders()
           .set('Accept', 'application/json');
 
-      let params = new HttpParams()
+      const params = new HttpParams()
           .set('from', this.from)
           .set('to', this.to);
 
       this.http
-      .get<Flight[]>(url, {headers, params})
-      .subscribe({
-        next: (flights: Flight[]) => {
-          this.flights = flights;
-        },
-        error: (errResp) => {
-          console.error('Error loading flights', errResp);
-        }
-      });
+        .get<Flight[]>(url, {headers, params})
+        .subscribe({
+          next: (flights: Flight[]) => {
+            this.flights = flights;
+          },
+          error: (errResp) => {
+            console.error('Error loading flights', errResp);
+          }
+        });
     }
     ```
  </p>
@@ -157,26 +157,26 @@ In this first part of the exercise you will implement the _FlightSearchComponent
     <div class="card">
 
       <div class="header">
-      <h2 class="title">Flight Search</h2>
+        <h2 class="title">Flight Search</h2>
       </div>
 
       <div class="content">
 
       <form>
         <div class="form-group">
-        <label>From:</label>
-        <input [(ngModel)]="from" name="from" class="form-control">
+          <label>From:</label>
+          <input [(ngModel)]="from" name="from" class="form-control">
         </div>
         <div class="form-group">
-        <label>To:</label>
-        <input [(ngModel)]="to" name="to" class="form-control">
+          <label>To:</label>
+          <input [(ngModel)]="to" name="to" class="form-control">
         </div>
 
         <div class="form-group">
         <button
-        [disabled]="!to || !from"
-        (click)="search()"
-        class="btn btn-default">Search</button>
+          [disabled]="!to || !from"
+          (click)="search()"
+          class="btn btn-default">Search</button>
         </div>
       </form>
 
@@ -208,7 +208,7 @@ In this first part of the exercise you will implement the _FlightSearchComponent
         <td>...</td>
         <td>...</td>
         <td>
-        <a>Select</a> 
+          <a>Select</a> 
         </td>
       </tr>
       </table>
@@ -242,7 +242,7 @@ In this first part of the exercise you will implement the _FlightSearchComponent
         <td>{{f.to }}</td>
         <td>{{f.date | date:'dd.MM.yyyy HH:mm'}}</td>
         <td>
-        <a (click)="select(f)">Select</a> 
+          <a (click)="select(f)">Select</a> 
         </td>
       </tr>
       </table>
@@ -258,8 +258,8 @@ In this first part of the exercise you will implement the _FlightSearchComponent
      ```HTML
      <div class="card">
        <div class="content">
-       <!-- {{title}} --> <!-- old row  -->
-       <pre>{{ selectedFlight | json }}</pre> <!-- new row --> 
+         <!-- {{title}} --> <!-- old row  -->
+         <pre>{{ selectedFlight | json }}</pre> <!-- new row --> 
        </div>
      </div>
      ```
@@ -362,31 +362,30 @@ Follow these steps:
     
     ```TypeScript
     save(): void {
-
       const url = 'http://www.angular.at/api/flight';
 
       const headers = new HttpHeaders()
               .set('Accept', 'application/json');
 
       this.http
-      .post<Flight>(url, this.selectedFlight, { headers })
-      .subscribe({
-        next: flight => {
-          this.selectedFlight = flight;
-          this.message = 'Success!';
-        },
-        error: errResponse => {
-          console.error('Error', errResponse);
-          this.message = 'Error: ';
-        }
-      });
+        .post<Flight>(url, this.selectedFlight, { headers })
+        .subscribe({
+          next: flight => {
+            this.selectedFlight = flight;
+            this.message = 'Success!';
+          },
+          error: errResponse => {
+            console.error('Error', errResponse);
+            this.message = 'Error: ';
+          }
+        });
     }
     ```
     
     </p>
     </details>
 
-3. Create the option to edit the _selectedFlight_ in the template. In order to avoid zero accesses, you should check with _\*ngIf_ whether there is a selected flight. You can use the following HTML fragment, which you still need to add data binding expressions: 
+3. Create the option to edit the _selectedFlight_ in the template. In order to avoid zero accesses, you should check with _*ngIf_ whether there is a selected flight. You can use the following HTML fragment, which you still need to add data binding expressions: 
 
     ```HTML
     <div *ngIf="selectedFlight">
@@ -405,7 +404,7 @@ Follow these steps:
       <input class="form-control">
       </div>
 
-      <!-- Ergänzen Sie hier analog Felder für die weiteren Eigenschaften des Fluges -->
+      <!-- add fields for other attributes -->
 
       […]
     
@@ -435,7 +434,7 @@ Follow these steps:
       <input [(ngModel)]="selectedFlight.from" class="form-control">
       </div>
 
-      <!-- Ergänzen Sie hier analog Felder für die weiteren Eigenschaften des Fluges -->
+      <!-- add fields for other attributes -->
 
       […]
     
@@ -449,21 +448,21 @@ Follow these steps:
 
 4. Run the application and test it. Note that you cannot edit the data records with IDs 1 to 5 so that these data records are available in every demo. You can assign ID 0 to create a new flight. After saving on the server, this will be replaced by the next free ID.
 
-## Eigenen Services erstellen
+## Your first Angular service
 
-### FlightService
+### Create a FlightService
 
-In dieser Übung werden Sie einen ``FlugService``, der die Kommunikation mit der Flug API via HTTP übernimmt, entwickeln und innerhalb Ihrer Komponente verwenden:
+In this exercise you will develop a ``FlightService`` that takes over the communication with the Flight API via HTTPS and use it within your component:
 
 ```
 [FlightSearchComponent] --> [FlightService]
 ```
 
-Sie können dazu den nachfolgenden Punkten folgen oder nur bei Bedarf nachschlagen.
+To do this, you can follow the points below or just look up if necessary.
 
-1. Erstellen Sie im Ordner _flight-search_ einen Service. Die Datei dieses Services soll _flight.service.ts_ heißen.
+1. Create a service in the _flight-search_ folder. The file for this service should be named _flight.service.ts_.
 
-1. Implementieren Sie in dieser Datei einen _FlightService_, der die von der Anwendung benötigten Flüge abruft. Dieser muss sich zum Verrichten seiner Aufgabe den _HttpClient_ injizieren lassen.
+2. Implement a _FlightService_ in that file, which requests the flights required by the application. The service must have the _HttpClient_ injected (and imported) to do its job.
 
     <details>
     <summary>Show source</summary>
@@ -473,29 +472,27 @@ Sie können dazu den nachfolgenden Punkten folgen oder nur bei Bedarf nachschlag
     @Injectable({ providedIn: 'root' })
     export class FlightService {
 
-    constructor(private http: HttpClient) {
-    }
+      constructor(private http: HttpClient) {}
 
       find(from: string, to: string): Observable<Flight[]> {
-      let url = 'http://www.angular.at/api/flight';
+        const url = 'http://www.angular.at/api/flight';
 
-      let headers = new HttpHeaders()
+        const headers = new HttpHeaders()
             .set('Accept', 'application/json');
 
-      let params = new HttpParams()
+        const params = new HttpParams()
             .set('from', from)
             .set('to', to);
 
-      return this.http.get<Flight[]>(url, {headers, params});
+        return this.http.get<Flight[]>(url, {headers, params});
       }
-
     }
     ```
     
     </p>
     </details>
 
-    Falls Sie die Bonus-Aufgabe _Flüge editieren_ weiter oben gemacht haben, müssen Sie nun auch die Methode _save_ in den Service auslagern.
+   In case you did bonus task _Edit flights_ above, you must now also outsource the _save_ method to the service.
     
     <details>
     <summary>Show source</summary>
@@ -503,9 +500,9 @@ Sie können dazu den nachfolgenden Punkten folgen oder nur bei Bedarf nachschlag
     
     ```TypeScript
     save(flight: Flight): Observable<Flight> {
-      let url = 'http://www.angular.at/api/flight';
+      const url = 'http://www.angular.at/api/flight';
 
-      let headers = new HttpHeaders()
+      const headers = new HttpHeaders()
           .set('Accept', 'application/json');
 
       return this.http.post<Flight>(url, flight, { headers });
@@ -516,7 +513,7 @@ Sie können dazu den nachfolgenden Punkten folgen oder nur bei Bedarf nachschlag
     </details> 
 
 
-2. Öffnen Sie die Datei _flight-search.component.ts_ und lassen Sie sich den neuen Service in den Konstruktor injizieren.
+2. Open the _flight-search.component.ts_ file and inject the new service into the constructor. Make sure the corresponding import was added!
 
     <details>
     <summary>Show source</summary>
@@ -534,7 +531,7 @@ Sie können dazu den nachfolgenden Punkten folgen oder nur bei Bedarf nachschlag
     </p>
     </details>
 
-1. Nutzen Sie den injizierten _FlightService_ in der Methode _search_ zum Suchen nach Flügen.
+3. Use the injected _FlightService_ in the _search_ method to search for flights.
 
     <details>
     <summary>Show source</summary>
@@ -548,7 +545,7 @@ Sie können dazu den nachfolgenden Punkten folgen oder nur bei Bedarf nachschlag
         next: (flights) => {
           this.flights = flights;
         },
-        error:  (errResp) => {
+        error: (errResp) => {
           console.error('Error loading flights', errResp);
         }
       });
@@ -558,32 +555,13 @@ Sie können dazu den nachfolgenden Punkten folgen oder nur bei Bedarf nachschlag
     </p>
     </details>
 
+4. Test your solution in the browser.
 
+5. Make sure with the DevTools debugger that the _FlightService_ gets the _HttpClient_ injected first and then the component gets the _FlightService_ in the same way.
 
-2. Testen Sie Ihre Lösung im Browser.
+### Bonus: Alternate Implementation *
 
-1. Stellen Sie mit dem Debugger sicher, dass zunächst der _FlightService_ den _HttpClient_ injiziert bekommt und dann die Komponente den _FlightService_ auf diese selbe Weise erhält.
-
-
-
-<!-- 
-### Bonus: Augury *
-
-1. Installieren Sie das Chrome-Plugin Augury (``augury.angular.io``).
-
-1. Registrieren Sie Ihren Service global (im _AppModule_) und nutzen Sie ihn in Ihrer Komponente.
-
-2. Laden Sie Ihre Anwendung und wechseln Sie in den Dev-Tools (F12) auf das neue Registerblatt Augury.
-
-1. Markieren Sie die _FlightSearchComponent_ und wechseln Sie in das Registerblatt _Injector Graph_.
-
-1. Dort sollten Sie nun in einer graphischen Übersicht sehen, wo Ihr Service registriert wird und dass er in die _FlightSearchComponent_ injiziert wird.
-
--->
-
-### Bonus: Alternative Implementierung *
-
-1. Erzeugen Sie im Ordner _flight-search_ eine neue Datei mit einem ``AbstractFlightService``:
+1. Create a new file with an ``AbstractFlightService`` in the _flight-search_ folder:
 
     ```TypeScript
     export abstract class AbstractFlightService {
@@ -591,7 +569,7 @@ Sie können dazu den nachfolgenden Punkten folgen oder nur bei Bedarf nachschlag
     }
     ```
 
-1. Wechseln Sie in die Datei _flight.service.ts_ und lassen Sie _FlightService_ die Klasse _AbstractFlightService_ implementieren:
+2. Switch to the _flight.service.ts_ file and let _FlightService_ implement the _AbstractFlightService_ class:
 
     ```TypeScript
     @Injectable({ [...] })
@@ -600,9 +578,9 @@ Sie können dazu den nachfolgenden Punkten folgen oder nur bei Bedarf nachschlag
     }
     ```
 
-    Das Schlüsselwort _implements_ gibt an, dass der _FlightService_ sämtliche Methoden des _AbstractFlightServices_ implementieren muss. Im Gegensatz zum Schlüsselwort _extends_ findet jedoch keine Vererbung statt.
+   The keyword _implements_ indicates that the _FlightService_ must implement all methods of the _AbstractFlightServices_. In contrast to the keyword _extends_, however, there is no inheritance.
 
-2. Wechseln Sie in die Datei app.module.ts und erzeugen Sie einen Provider für den AbstractFlightService:
+3. Switch to the app.module.ts file and create a provider for the AbstractFlightService:
 
     ```typescript
     @NgModule({
@@ -618,7 +596,7 @@ Sie können dazu den nachfolgenden Punkten folgen oder nur bei Bedarf nachschlag
     export class AppModule { }
     ```
 
-3. Fordern Sie per Dependency Injection in Ihrer Komponente eine Instanz von _AbstractFlightService_ **anstatt* einer Instanz von _FlightService_ an:
+4. Request an instance of _AbstractFlightService_ **instead** of an instance of _FlightService_ in your component via dependency injection:
 
     <details>
     <summary>Show source</summary>
@@ -633,12 +611,11 @@ Sie können dazu den nachfolgenden Punkten folgen oder nur bei Bedarf nachschlag
 
     <br>
 
+5. Test your solution.
 
-4. Testen Sie Ihre Lösung.
+6. Create a _dummy-flight.service.ts_ file in the _flight-search_ folder.
 
-5. Erstellen Sie im Ordner _flight-search_ eine Datei _dummy-flight.service.ts_.
-
-6. Stellen Sie in dieser Datei eine alternative Implementierung von _AbstractFlightService_ zur Verfügung. Diese soll sich _DummyFlightService_ nennen und ein paar hartcodierte Flüge zum Testen zurück liefern:
+7. Provide an alternative implementation of _AbstractFlightService_ in this file. This should be called _DummyFlightService_ and return a few hard-coded flights for testing:
 
     ```TypeScript
     import { of } from 'rxjs';
@@ -646,18 +623,15 @@ Sie können dazu den nachfolgenden Punkten folgen oder nur bei Bedarf nachschlag
 
     @Injectable()
     export class DummyFlightService implements AbstractFlightService {
-
       find(from: string, to: string): Observable<Flight[]> {
-
-      return of([{id: 17, from: 'Graz', to: 'Hamburg', date: '2022-01-01', delayed: true}]);
-
+        return of([{id: 17, from: 'Graz', to: 'Hamburg', date: '2022-01-01', delayed: true}]);
       }
     }
     ```
 
-    Die hier gezeigte Funktion _of_ erzeugt ein Observable, das das übergebene Array mit Flügen zurückliefert.  
+   The _of_ function shown here creates an observable that returns the transferred array with flights.  
 
-7. Lassen Sie nun Ihren ``AbstractFlightService`` auf den neuen ``DummyFlightService`` verweisen.
+8. Now let your ``AbstractFlightService`` refer to the new `` DummyFlightService``.
 
     <details>
     <summary>Show source</summary>
@@ -682,27 +656,27 @@ Sie können dazu den nachfolgenden Punkten folgen oder nur bei Bedarf nachschlag
 
     <br>
 
-8. Testen Sie Ihre Lösung und vergewissern sie sich, dass der neue _DummyFlightService_ zum Einsatz kommt.
+9. Test your solution and make sure that the new _DummyFlightService_ is used.
 
-9.  Stellen Sie die Serviceregistrierung wieder um, sodass Sie allen Konsumenten, die den _AbstractFlightService_ verlangen, den ursprünglichen _FlightService_ zukommen lässt:
+10. Change the service registration again so that you can send the original _FlightService_ to all consumers who request the _AbstractFlightService_:
 
-    ```typescript
-    @NgModule({
-      [...],
-      providers: [
-          { 
-            provide: AbstractFlightService, 
-            useClass: FlightService
-          }
-      ],
-      [...]
-    })
-    export class AppModule { }
-    ```
+     ```typescript
+     @NgModule({
+       [...],
+       providers: [
+           { 
+             provide: AbstractFlightService, 
+             useClass: FlightService
+           }
+       ],
+       [...]
+     })
+     export class AppModule { }
+     ```
 
 ### Bonus: useFactory **
 
-Mit ``useFactory`` können Sie eine Factory-Funktion, die angibt, wie Ihr Service zu erzeugen ist, angeben:
+With ``useFactory`` you can specify a factory function that specifies how your service is to be created
 
   ```typescript
   @NgModule({
@@ -719,13 +693,13 @@ Mit ``useFactory`` können Sie eine Factory-Funktion, die angibt, wie Ihr Servic
   export class AppModule { }
   ```
 
-Erstellen Sie in dieser Datei eine Konstante ``DEBUG``, welche entweder ``true`` oder ``false`` sein kann. Ändern Sie die Factory ab, sodass sie in Abhängigkeit von ``DEBUG`` den ``FlightService`` (``DEBUG===false``) oder den ``DummyFlightService`` (``DEBUG===true``) zurückliefert.
+Create a constant ``DEBUG`` in this file, which can be either ``true`` or ``false``. Change the factory so that, depending on `` DEBUG``, it returns either the ``FlightService`` (`` DEBUG === false``) or the ``DummyFlightService`` (``DEBUG === true``).
 
-## Eigene Pipe erstellen
+## Create your own pipe
 
-1. Erstellen Sie im Ordner _src/app_ die Unterordner _shared/pipes_.
+1. In the _src/app_ folder, create the sub-folders _shared / pipes_.
 
-2. Erstellen Sie in diesem Ordner eine neue Datei _city.pipe.ts_ mit einer _CityPipe_. Diese Pipe soll die Städtenamen wie ``Graz`` oder ``Hamburg`` abhängig von einem übergebenen Parameter entweder auf Flughafencodes wie ``GRZ`` oder ``HAM`` oder auf Lanbezeichnungen wie ``Flughafen Graz Thalerhof`` oder ``Airport Hamburg Helmut Schmidt`` abbilden.
+2. In this folder, create a new file _city.pipe.ts_ with a _CityPipe_. This pipe should transfrom the city names such as `` Graz`` or ``Hamburg`` depending on a transferred parameter either on airport codes such as ``GRZ`` or `` HAM`` or on long names such as ``Flughafen Graz Thalerhof`` or `` Airport Hamburg Helmut Schmidt``.
 
     <details>
     <summary>Show source</summary>
@@ -739,15 +713,13 @@ Erstellen Sie in dieser Datei eine Konstante ``DEBUG``, welche entweder ``true``
       pure: true
     })
     export class CityPipe implements PipeTransform {
-
       transform(value: string, fmt: string): string {
-
         let short, long;
 
         switch(value) {
           case 'Graz':
             short = 'GRZ';
-            long = 'Flughafen Graz Thalerhof';
+            long = 'Airport Graz Thalerhof';
             break;
           case 'Hamburg':
             short = 'HAM';
@@ -755,24 +727,25 @@ Erstellen Sie in dieser Datei eine Konstante ``DEBUG``, welche entweder ``true``
           break;
           case 'Wien':
             short = 'VIE';
-            long = 'Flughafen Wien Schwechat';
+            long = 'Airport Wien Schwechat';
           break;
           default:
-            short = long = value    ;
+            short = long = value;
         }
 
-        if (fmt == 'short') return short;
+        if (fmt === 'short') {
+          return short;
+        }
+        
         return long;
-
       }
-
     }
     ```
     
     </p>
     </details>
 
-3. Öffnen Sie die Datei _app.module.ts_ und stellen Sie sicher, dass die neue Pipe registriert wurde.
+3. Open the _app.module.ts_ file and make sure the new pipe has been registered.
 
     <details>
     <summary>Show source</summary>
@@ -780,21 +753,21 @@ Erstellen Sie in dieser Datei eine Konstante ``DEBUG``, welche entweder ``true``
 
     ```TypeScript
     @NgModule({
-    imports: [
-      BrowserModule,
-      FormsModule,
-      HttpClientModule
-    ],
-    declarations: [
-      [...],
-      AppComponent,
-      FlightSearchComponent,
-      CityPipe   // <-- Diese Zeile ist wichtig!
-    ],
-    providers: [
-      […]
-    ],
-    bootstrap: [AppComponent]
+      imports: [
+        BrowserModule,
+        FormsModule,
+        HttpClientModule
+      ],
+      declarations: [
+        [...],
+        AppComponent,
+        FlightSearchComponent,
+        CityPipe   // <-- this line should be here!
+      ],
+      providers: [
+        […]
+      ],
+      bootstrap: [AppComponent]
     })
     export class AppModule { }
     ```
@@ -805,7 +778,7 @@ Erstellen Sie in dieser Datei eine Konstante ``DEBUG``, welche entweder ``true``
     <br>
 
 
-1. Öffnen Sie die Datei _flight-search.component.html_ und nutzen Sie die _CityPipe_ zum Formatieren der Städte der gefundenen Flüge.
+4. Open the file _flight-search.component.html_ and use the _CityPipe_ to format the cities of the flights found.
 
     <details>
     <summary>Show source</summary>
@@ -842,14 +815,13 @@ Erstellen Sie in dieser Datei eine Konstante ``DEBUG``, welche entweder ``true``
     </p>
     </details>
 
-1. Testen Sie Ihre Lösung.
+5. Test your solution.
 
-
-## Bonusaufgaben zu Pipes
+## Bonus tasks on pipes
 
 ### Bonus: StatusColorPipe *
 
-Erstellen Sie eine _StatusColorPipe_, welche die Eigenschaft _delayed_ des Fluges (true oder false) auf eine Farbe abbildet. Nutzen Sie diese Pipe gemeinsam mit der Direktive _ngStyle_, um diese Farbe zur CSS-Eigenschaft _color_ des ausgegebenen Status zuzuweisen:
+Create a _StatusColorPipe_, which maps the property _delayed_ of the flight (true or false) to a color. Use this pipe together with the _ngStyle_ directive to assign this color to the CSS property _color_ of the output status:
 
 ```HTML
 <td [ngStyle]="{color: f.delayed | statusColor }">
@@ -857,62 +829,61 @@ Erstellen Sie eine _StatusColorPipe_, welche die Eigenschaft _delayed_ des Fluge
 </td>
 ```
 
-### Bonus: StatusFilterPipe \*
+### Bonus: StatusFilterPipe *
 
-Erstellen Sie eine _StatusFilterPipe_, welche ein Array mit Flügen filtert, sodass nur Flüge mit einem bestimmten Wert für _delayed_ zurückgeliefert werden. Die Pipe soll wie folgt verwendet werden können:
+Create a _StatusFilterPipe_, which filters an array with flights, so that only flights with a certain value for _delayed_ are returned. The pipe should be able to be used as follows:
 
 ```HTML
 <tr *ngFor="let f of flights | statusFilter:true">
+  […]
 </tr>
 ```
 
-Der Parameter _true_ gibt hier an, dass nur die Flüge mit _delayed=true_ zurückzuliefern sind.
+The parameter _true_ indicates that only the flights with _delayed = true_ are to be returned.
 
-Die Transform-Methode dieser Pipe nimmt das gesamte Array entgegen und liefert danach eine gefilterte Version zurück:
+The transform method of this pipe takes the entire array and then returns a filtered version:
 
 ```TypeScript
-transform(flights: Array<Flight>, delayed: boolean): Array<Flight> {
+transform(flights: Flight[], delayed: boolean): Flight[] {
  […]
 }
 ```
 
-Eine Beschreibung der Methoden, welche die Klasse Array anbietet, finden Sie unter anderem hier:
+A description of the methods offered by the Array class can be found here:
 [https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global\_Objects/Array](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Array)
 
-### Bonus: Service für Pipe \*
+### Bonus: Service for Pipe *
 
-Lagern Sie die Logik mit dem Switch-Block in einen neuen ``AirportService`` aus. Lassen Sie den ``AirportService`` ihn in den Konstruktor der Pipe injizieren (funktioniert wie bei Komponenten). Rufen Sie dann den Service in der Methode ``transform`` auf und testen Sie Ihre Lösung.
+Outsource the logic with the switch block to a new ``AirportService``. Let the `` AirportService`` inject it into the constructor of the pipe (works like components). Then call the service in the ``transform`` method and test your solution.
 
-### Bonus: Asynchroner Service für Pipe **
+### Bonus: Asynchronous service for Pipe **
 
-Sie finden unter den nachfolgenden Urls zwei Services, die den offiziellen Kurz- sowie den offiziellen Lang-Namen eines Flughafens (als String) liefern:
+Under the following urls you will find two services that provide the official short and the official long name of an airport (as a string):
 
 - [http://angular-at.azurewebsites.net/api/airport/code?name=Graz](http://angular-at.azurewebsites.net/api/airport/code?name=Graz)
 - [http://angular-at.azurewebsites.net/api/airport/fullName?name=Graz](http://angular-at.azurewebsites.net/api/airport/fullName?name=Graz)
 
-Erweitern Sie Ihren Airport-Service um Methoden, die damit die Lang- bzw. Kurz-Bezeichnung eines Flughafens als ``Observable<String>``
-zurückliefern.
+Expand your airport service with methods that return the long or short name of an airport as ``Observable<String>``.
 
-Schreiben Sie eine neue ``AsyncCityPipe``, die sich diesen Service injizieren lässt. Die ``transform``-Methode soll an den Service delegieren und das gewünschte Ergebnis in Form des erhaltenen als _Observable&lt;string&gt;_ zurückliefern. Damit Angular dieses Observable auflösen kann, muss im Template zusätzlich die Async-Pipe verwendet werden:
+Write a new ``AsyncCityPipe`` that injects this service. The ``transform`` method should delegate to the service and return the desired result in the form of the received as _Observable&lt;string&gt;_. In order for Angular to be able to resolve this observable, the async pipe must also be used in the template:
 
 ```HTML 
 [...]
-{{ f.from | asyncCity:'short' | async }}
+  {{ f.from | asyncCity:'short' | async }}
 [...]
 ``` 
 
-**Wichtig:** Die Pipe muss ``pure`` sein, um Probleme mit der Datenbindung zu vermeiden. Pipes, die nicht pure sind, werden ja nach jedem Event neu ausgeführt. Dadurch, dass die Pipe selbst ein durch die Server-Anfrage ein Daten-Event triggert, käme es hier zu einer Endlosschleife.
+**Important:** The pipe must be ``pure`` to avoid problems with the data binding. Pipes that are not pure are re-executed after each event. The fact that the pipe itself triggers a data event through the server request would result in an infinite loop.
 
+## Modules
 
-## Module
-
-In dieser Übung werden Sie Ihre Lösung refaktorieren, sodass sich die folgende Module-Struktur ergibt:
+In this exercise you will refactor your solution so that the following module structure results:
 
 ```
 [AppModule] --> [FlightBookingModule] --> [SharedModule]
 ```
 
-Jedes Modul erhält Ihren eigenen Ordner und im Rahmen dessen wird die ``FlightSearchComponent`` in den neu geschaffenen Ordner des ``FlightBookingModule``s verschoben:
+Each module has its own folder and within this the ``FlightSearchComponent`` is moved to the newly created folder of the ``FlightBookingModule``:
 
 ```
  /src
@@ -931,14 +902,13 @@ Jedes Modul erhält Ihren eigenen Ordner und im Rahmen dessen wird die ``FlightS
   +-- app.module.ts
 ```
 
-Denken Sie daran, dass das ``SharedModule`` und das ``FlightBookingModule`` das von Angular angeobtene ``CommonModule`` (``@angular/common``) importieren muss, damit Standard-Direktiven und -Pipes wie ``ngFor`` oder ``date`` gefunden werden.
+Remember that the ``SharedModule`` and the ``FlightBookingModule`` must import the Angular ``CommonModule`` (``@angular/common``) so that Angular directives and pipes such as ``ngFor`` or ``date`` can be used.
 
 <details>
-<summary>Einzelne Schritte anzeigen</summary>
+<summary>Show steps for module structure</summary>
 <p>
 
-
-1. Erstellen Sie im Ordner _shared_ eine Datei _shared.module.ts_ und spendieren Sie dieser Datei eine Klasse _SharedModule_:
+1. Create a _shared.module.ts_ file in the _shared_ folder and give this file a _SharedModule_ class:
 
     ```TypeScript
     @NgModule({
@@ -955,13 +925,13 @@ Denken Sie daran, dass das ``SharedModule`` und das ``FlightBookingModule`` das 
     export class SharedModule { }
     ```
 
-    Beachten Sie, dass nun hier die _CityPipe_ sowohl deklariert als auch exportiert wird.
+   Note that the _CityPipe_ is now both declared and exported here.
 
-1. Erstellen Sie im Ordner _src/app_ einen Ordner _flight-booking_.
+2. In the _src/app_ folder, create a _flight-booking_ folder.
 
-1. Verschieben Sie den Ordner _flight-search_ nach _flight-booking_. Passen Sie alle vorhandenen relativen Pfade an, falls dieser Refaktorierungsschritt nicht ohnehin von Ihrer IDE übernommen wird.
+3. Move the folder _flight-search_ to _flight-booking_. Adjust all existing relative paths in case this refactoring step is not taken over by your IDE anyway.
 
-1. Erstellen Sie im Ordner _flight-booking_ eine Datei _flight-booking.module.ts_ mit einem _FlightBookingModule_:
+4. In the _flight-booking_ folder, create a _flight-booking.module.ts_ file with a _FlightBookingModule_:
 
     ```TypeScript
     @NgModule({
@@ -982,16 +952,16 @@ Denken Sie daran, dass das ``SharedModule`` und das ``FlightBookingModule`` das 
     export class FlightBookingModule { }
     ```
 
-    Beachten Sie, dass hier das _SharedModule_ importiert wird. Die von ihr angebotene _CityPipe_ kommt in der _FlightSearchComponent_ zum Einsatz.
+   Note that the _SharedModule_ is imported here. The _CityPipe_ it offers is used in the _FlightSearchComponent_.
 
-1. Wechseln Sie in die Datei _app.module.ts_ und passen Sie Ihr _AppModule_ wie folgt an:
+5. Switch to the _app.module.ts_ file and adapt your _AppModule_ as follows:
 
     ```TypeScript
     @NgModule({
     imports: [
       BrowserModule,
       HttpClientModule,
-      FlightBookingModule // <-- Wichtig
+      FlightBookingModule // <-- important
     ],
     declarations: [
       AppComponent,
@@ -1006,24 +976,24 @@ Denken Sie daran, dass das ``SharedModule`` und das ``FlightBookingModule`` das 
     export class AppModule { }
     ```
 
-1. Kompilieren Sie Ihre Lösung mit dem TypeScriptCompiler in Ihrer IDE und korrigieren Sie eventuelle Fehler (z. B. fehlerhafte relative Pfade, die sich durch das Verschieben ergeben haben).
+6. Serve your solution and correct any compile errors (e.g. incorrect relative paths that resulted from the move).
 
-2. Testen Sie Ihre neu strukturierte Lösung.
+7. Test your restructured solution.
 </p>
 </details>
 
-## Komponenten
+## Components Deep dive
 
-In dieser Übung werden Sie zunächst die gezeigte FlightCardComponent erstellen. Danach werden Sie in einer Bonus-Übung eine eigene Komponente mit dem dabei aufgebauten Wissen erzeugen.
+In this exercise you will first create the FlightCardComponent shown. Then you will create your own component with the knowledge you have built up in a bonus exercise.
 
 ### FlightCardComponent
 
-1. Erstellen im Ordner ``flight-booking`` eine neue Komponente ``flight-card``, die aus einem Unterordner ``flight-card`` mit folgenden Dateien besteht:
+1. Create a new component ``flight-card`` in the folder of the module ``flight-booking``, which consists of a sub-folder ``flight-card`` with the following files:
 
-    - flight-card.component.html
-    - flight-card.component.ts
+    - ``flight-card.component.html``
+    - ``flight-card.component.ts``
 
-1. Öffnen Sie die Datei _flight-card.component.ts_ und spendieren Sie ihr die folgenden Member:
+2. Open the file ``flight-card.component.ts`` and add the following members:
 
     ```TypeScript
     @Component({
@@ -1038,15 +1008,14 @@ In dieser Übung werden Sie zunächst die gezeigte FlightCardComponent erstellen
       @Input() selected: boolean;
       @Output() selectedChange = new EventEmitter<boolean>();
 
-      ngOnInit() {
-      }
+      ngOnInit(): void {}
 
-      select() {
+      select(): void {
         this.selected = true;
         this.selectedChange.next(this.selected);
       }
 
-      deselect() {
+      deselect(): void {
         this.selected = false;
         this.selectedChange.next(this.selected);
       }
@@ -1054,41 +1023,36 @@ In dieser Übung werden Sie zunächst die gezeigte FlightCardComponent erstellen
     }
     ```
 
- Beachten Sie, dass hier der Selektor _flight-card_ festgelegt wurde.
+   Note that the _flight-card_ selector was set here, you could also use _app-flight-card_ of course.
 
-1. Öffnen Sie das Template dieser Komponente (``flight-card.component.html``). Erweitern Sie diese Datei, sodass die Karte dargestellt wird:
+3. Open the template of this component (``flight-card.component.html``). Expand this file so that the map is displayed:
 
     ```TypeScript
-    <div
-    class="card"
-    [ngStyle]="{'background-color': (selected) ? 'rgb(204, 197, 185)' : 'white' }">
-
+    <div class="card" [ngStyle]="{'background-color': (selected) ? 'rgb(204, 197, 185)' : 'white' }">
       <div class="header">
-      <h2 class="title">{{item.from}} - {{item.to}}</h2>
+        <h2 class="title">{{item.from}} - {{item.to}}</h2>
       </div>
       <div class="content">
-      <p>Flight-No.: #{{item.id}}</p>
-      <p>Date: {{item.date | date:'dd.MM.yyyy HH:mm'}}</p>
+        <p>Flight-No.: #{{item.id}}</p>
+        <p>Date: {{item.date | date:'dd.MM.yyyy HH:mm'}}</p>
 
-      <p>
-      <button
-        class="btn btn-default"
-        *ngIf="!selected"
-        (click)="select()">Select</button>
-      <button
-        class="btn btn-default"
-        *ngIf="selected"
-        (click)="deselect()">Remove</button>
-
-      </p>
-
+        <p>
+          <button
+            class="btn btn-default"
+            *ngIf="!selected"
+            (click)="select()">Select</button>
+          <button
+            class="btn btn-default"
+            *ngIf="selected"
+            (click)="deselect()">Remove</button>
+        </p>
       </div>
     </div>
     ```
 
-    Beachten Sie die Datenbindungsausdrücke in diesem Template.
+   Note the data binding expressions in this template.
 
-1. Wechseln Sie in die Datei _flight-booking.module.ts_. Vergewissern Sie sich, dass hier die neue _FlightCardComponent_ registriert wird.
+4. Switch to the _flight-booking.module.ts_ file. Make sure that the new _FlightCardComponent_ is registered here.
 
     <details>
     <summary>Show source</summary>
@@ -1103,7 +1067,7 @@ In dieser Übung werden Sie zunächst die gezeigte FlightCardComponent erstellen
     ],
     declarations: [
       FlightSearchComponent,
-      FlightCardComponent  // <-- Diese Zeile ist wichtig!
+      FlightCardComponent  // <-- important
     ],
     providers:[ ],
     exports: [
@@ -1116,29 +1080,29 @@ In dieser Übung werden Sie zunächst die gezeigte FlightCardComponent erstellen
     </p>
     </details>
 
-1. Öffnen Sie die Datei _flight-search.component.ts_ und ergänzen Sie die eine Eigenschaft _basket_:
+5. Open the file _flight-search.component.ts_ and add the one property _basket_:
 
     ```TypeScript
     export class FlightSearchComponent implements OnInit {
 
       from: string;
       to: string;
-      flights: Array<Flight> = [];
+      flights: Flight[] = [];
       selectedFlight: Flight;
 
 
-      basket: object = {   // <-- Neue Eigenschaft
-      "3": true,
-      "5": true
+      basket: object = {   // <-- new attribute
+        "3": true,
+        "5": true
       };
 
       […]
     }
     ```
 
-1. Öffnen Sie die Datei _flight-search.component.html_. Kommentieren Sie die tabellarische Ausgabe der gefundenen Flüge aus.
+6. Open the file _flight-search.component.html_. Comment out the tabular output of the flights found.
 
-1. Nutzen Sie anstatt der Tabelle die neue das Element ``flight-card`` um die gefundenen Flüge darzustellen. Erstellen Sie dazu eine explizite Bindung für die Eigenschaften ``item``, ``selected`` und ``selectedChange``.
+7. Instead of the table, use the new element ``flight-card`` to display the flights found. To do this, create an explicit binding for the properties ``item``, ``selected`` and the event ``selectedChange``.
 
     <details>
     <summary>Show source</summary>
@@ -1160,8 +1124,7 @@ In dieser Übung werden Sie zunächst die gezeigte FlightCardComponent erstellen
     </p>
     </details>
 
-
-1. Aktualisieren Sie am Ende des Templates auch den Warenkorb, sodass hier die neue Eigenschaft ``basket`` anstatt von ``selectedFlight`` ausgegeben wird.
+8. At the end of the template, also update the shopping cart so that the new property ``basket`` is output here instead of ``selectedFlight``.
 
     <details>
     <summary>Show source</summary>
@@ -1178,9 +1141,9 @@ In dieser Übung werden Sie zunächst die gezeigte FlightCardComponent erstellen
     </p>
     </details>
 
-1. Testen Sie Ihre Lösung.
+9. Test your solution.
 
-1. Nutzen Sie beim Aufruf der _FlugCardComponent_ anstatt der Bindings für _selected_ und _selectedChanged_ ein Two-Way-Binding unter Verwendung der "Banana-in-a-Box-Syntax".
+10. When calling the _FlugCardComponent_, use a two-way binding using the "Banana-in-a-Box syntax" instead of the bindings for _selected_ and _selectedChanged_.
 
     <details>
     <summary>Show source</summary>
@@ -1201,12 +1164,11 @@ In dieser Übung werden Sie zunächst die gezeigte FlightCardComponent erstellen
     </p>
     </details>
 
+11. Test your solution.
 
-1. Testen Sie Ihre Lösung.
+### Bonus: FlightStatusToggleComponent **
 
-### Bonus: FlightStatusToggleComponent \*\*
-
-Erstellen Sie eine _StatusToggleComponent_, die das Flag delayed eines Fluges per Two-Way-Binding entgegennimmt und als Link anzeigt. Bei jedem Klick auf diesen Link soll der Status gewechselt werden. Die Komponente soll wie folgt im Template der FlightCardComponent aufgerufen werden werden können:
+Create a _StatusToggleComponent_ that receives the delayed flag of a flight via two-way binding and displays it as a link. Each time you click on this link, the status should be changed. The component should be able to be called in the template of the FlightCardComponent as follows:
 
 ```HTML
 <status-toggle [(status)]="item.delayed"></status-toggle>
@@ -1214,9 +1176,9 @@ Erstellen Sie eine _StatusToggleComponent_, die das Flag delayed eines Fluges pe
 
 ### Bonus: Content Projection **
 
-In dieser Bonus-Übung schaffen Sie die Möglichkeit, die Darstellung der _FlightCardComponent_ zu erweitern, indem Sie beim Aufruf zusätzlich anzuzeigendes HTML übergeben.
+In this bonus exercise you create the possibility of expanding the display of the _FlightCardComponent_ by transferring additional HTML to be displayed when it is called.
 
-1. Öffnen Sie die Datei flight-search.component.html und übergeben Sie an die_FlightCardComponent_ zusätzliches HTML:
+1. Open the file flight-search.component.html and transfer additional HTML to the_FlightCardComponent_:
 
     ```HTML
     <flight-card […]>
@@ -1224,7 +1186,7 @@ In dieser Bonus-Übung schaffen Sie die Möglichkeit, die Darstellung der _Fligh
     </flight-card> 
     ```
 
-1. Platzieren Sie im **Template der**  **FlightCardComponent** das Element _ng-content_, um anzuzeigen, wo das übergebene Markup anzuzeigen ist:
+2. Place the _ng-content_ element in the **Template** of the **FlightCardComponent** to indicate where the passed content should be displayed:
 
     ```HTML
     […]
@@ -1239,10 +1201,9 @@ In dieser Bonus-Übung schaffen Sie die Möglichkeit, die Darstellung der _Fligh
     […]
     ```
 
-1. Testen Sie Ihre Lösung.
+3. Test your solution.
 
-1. Ergänzen Sie das Template, sodass es nun das Element _ng-content_ zwei Mal verwendet – einmal im oberen Bereich und einmal im unteren Bereich der Komponente:
-
+4. Add to the template so that it now uses the _ng-content_ element twice - once in the upper area and once in the lower area of the component:
     ```HTML
     […]
     <div class="content">
@@ -1258,9 +1219,9 @@ In dieser Bonus-Übung schaffen Sie die Möglichkeit, die Darstellung der _Fligh
     […]
     ```
 
-    Um Angular zu zeigen, was in die einzelnen mit _ng-content_ definierten Platzhalter einzufügen ist, erhalten diese über die Eigenschaft _select_ einen CSS-Selektor, der einen Teil des übergebenen Markups adressiert. Der Selektor _.top_ sucht im Markup beispielsweise nach einem Element mit der Klasse _top_ und fügt es in das jeweilige _ng-content_-Element ein.
+   In order to show Angular what has to be inserted into the individual placeholders defined with _ng-content_, they receive a CSS selector via the property _select_, which addresses part of the transferred markup. For example, the _.top_ selector searches the markup for an element with the _top_ class and inserts it into the respective _ng-content_ element.
 
-1. Öffnen Sie die Datei _flight-search.component.html_. Übergeben Sie beim Aufruf der _flight-card_ Elemente für die beiden definierten Platzhalter:
+5. Open the file _flight-search.component.html_. When calling the _flight-card_ elements, pass the two defined placeholders:
 
     ```HTML
     <flight-card [...]>
@@ -1269,4 +1230,4 @@ In dieser Bonus-Übung schaffen Sie die Möglichkeit, die Darstellung der _Fligh
     </flight-card>
     ```
 
-1. Testen Sie Ihre Lösung.
+6. Test your solution.
