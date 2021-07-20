@@ -775,8 +775,6 @@ Create a constant ``DEBUG`` in this file, which can be either ``true`` or ``fals
     </p>
     </details>
 
-    <br>
-
 
 4. Open the file _flight-search.component.html_ and use the _CityPipe_ to format the cities of the flights found.
 
