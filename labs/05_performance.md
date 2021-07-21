@@ -49,7 +49,7 @@ Keep in mind that lazy loading only works if the module in question isn't refere
     ```typescript
     [...]
     {
-        path: 'flight-search',
+        path: 'flight-booking',
         loadChildren: () => import('./flight-booking/flight-booking.module').then(m => m.FlightBookingModule) 
     },
     {
@@ -90,7 +90,7 @@ Keep in mind that lazy loading only works if the module in question isn't refere
     </p>
     </details>
 
-4. Make sure your sidebar link to flight-search passenger-search search still works (something like `routerLink="/flight-booking/flight-search"`).
+4. Make sure your sidebar link to flight-search and passenger-search still works (something like `routerLink="/flight-booking/flight-search"`).
 
 5. Also make sure your `Edit` Button in your `FlightCardComponent` still works (try adding two dots like `[routerLink]="['../flight-edit', ...`).
 
