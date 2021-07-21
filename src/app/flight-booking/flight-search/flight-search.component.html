@@ -98,6 +98,7 @@
     <flight-card [item]="flight"
                  [(selected)]="basket[flight.id]"
                  (selectedChange)="selectedFlight = basket[flight.id] ? flight : null">
+      <em>ng content projection :-)</em>
     </flight-card>
   </div>
 </div>

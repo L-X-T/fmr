@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { environment } from '../../../environments/environment';
@@ -46,7 +46,12 @@ export class FlightEditComponent implements OnChanges, OnInit, OnDestroy {
 
   constructor(private formBuilder: FormBuilder) {}
 
-  ngOnChanges(): void {
+  ngOnChanges(changes: SimpleChanges): void {
+    if (environment.debug) {
+      console.warn('[FlightEditComponent - ngOnChanges] changes:');
+      console.log(changes);
+    }
+
     this.initForm();
 
     this.logEditForm();
@@ -84,7 +89,8 @@ export class FlightEditComponent implements OnChanges, OnInit, OnDestroy {
       }
 
       this.valueChangesSubscription = this.editForm.valueChanges.subscribe((value) => {
-        console.debug('changes: ', value);
+        console.warn('[FlightEditComponent - valueChangesSubscription] form value changes:');
+        console.log(value);
       });
     }
 
@@ -93,6 +99,7 @@ export class FlightEditComponent implements OnChanges, OnInit, OnDestroy {
 
   private logEditForm(): void {
     if (environment.debug) {
+      console.warn('[FlightEditComponent - logEditForm] form state:');
       console.log('value: ', this.editForm.value);
       console.log('valid: ', this.editForm.valid);
       console.log('touched: ', this.editForm.touched);
