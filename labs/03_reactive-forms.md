@@ -1,15 +1,13 @@
 # Reactive Forms
 
-<!--
-- [Reactive Forms](#reactive-forms)
-    - [Flüge editieren](#fl%C3%BCge-editieren)
-    - [Standard-Validatoren nutzen](#standard-validatoren-nutzen)
-    - [Benutzerdefinierte Validatoren](#benutzerdefinierte-validatoren)
-    - [Parametrisierbare Validatoren](#parametrisierbare-validatoren)
-    - [Multi-Field-Validatoren](#multi-field-validatoren)
-    - [Bonus: Flug laden *](#bonus-flug-laden)
-    - [Bonus: Flug speichern *](#bonus-flug-speichern)
--->
+- [Reactive Forms](#Reactive-Forms)
+    - [Edit flights](#Edit-flights)
+    - [Using Angular Validators](#Using-Angular-Validators)
+    - [Custom Validators](#Custom-Validators)
+    - [Parametrizable Validators](#Parametrizable-Validators)
+    - [Multifield Validators](#Multifield-Validators)
+    - [Bonus: Load flight *](#Bonus-Load-flight-)
+    - [Bonus: Save flight *](#Bonus-Save-flight-)
 
 ## Edit flights
 

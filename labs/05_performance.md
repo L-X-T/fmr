@@ -1,6 +1,6 @@
-# Angular Performance: Workshop
+# Performance
  
-- [Angular Performance: Workshop](#angular-performance-workshop)
+- [Performance](#performance)
   - [Lazy Loading](#lazy-loading)
     - [Implementing Lazy Loading for a feature module](#implementing-lazy-loading-for-a-feature-module)
     - [Implementing Preloading](#implementing-preloading)
