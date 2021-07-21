@@ -1,4 +1,25 @@
-# Angular Workshop: Building-Blocks
+# Angular Building Blocks
+
+- [Angular Building Blocks](#Angular-Building-Blocks)
+  - [Your first Angular component](#Your-first-Angular-component)
+    - [Component for searching for flights](#Component-for-searching-for-flights)
+    - [Use the debugger](#Use-the-debugger)
+    - [Bonus: Edit flights *](#Bonus-Edit-flights-)
+  - [Your first Angular service](#Your-first-Angular-service)
+    - [Create a FlightService](#Create-a-FlightService)
+    - [Bonus: Alternate Implementation *](#Bonus-Alternate-Implementation-)
+    - [Bonus: useFactory **](#Bonus-useFactory-)
+  - [Create your own pipe](#Create-your-own-pipe)
+  - [Bonus tasks on pipes](#Bonus-tasks-on-pipes)
+    - [Bonus: StatusColorPipe *](Bonus-StatusColorPipe-)
+    - [Bonus: StatusFilterPipe *](Bonus-StatusFilterPipe-)
+    - [Bonus: Service for a Pipe *](#Bonus-Service-for-a-Pipe-)
+    - [Bonus: Asynchronous service for a Pipe **](#Bonus-Asynchronous-service-for-a-Pipe-)
+  - [Modules](#Modules)
+  - [Components](#Components)
+    - [FlightCardComponent](#FlightCardComponent)
+    - [Bonus: FlightStatusToggleComponent **](Bonus-FlightStatusToggleComponent-)
+    - [Bonus: Content Projection **](Bonus-Content-Projection-)
 
 ## Your first Angular component
 
@@ -850,11 +871,11 @@ transform(flights: Flight[], delayed: boolean): Flight[] {
 A description of the methods offered by the Array class can be found here:
 [https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global\_Objects/Array](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Array)
 
-### Bonus: Service for Pipe *
+### Bonus: Service for a Pipe *
 
 Outsource the logic with the switch block to a new ``AirportService``. Let the `` AirportService`` inject it into the constructor of the pipe (works like components). Then call the service in the ``transform`` method and test your solution.
 
-### Bonus: Asynchronous service for Pipe **
+### Bonus: Asynchronous service for a Pipe **
 
 Under the following urls you will find two services that provide the official short and the official long name of an airport (as a string):
 

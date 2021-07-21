@@ -1,20 +1,18 @@
-# Angular Workshop: Template Driven Forms
+# Template Driven Forms
 
-<!--
-- [Angular Workshop: Template Driven Forms](#angular-workshop-template-driven-forms)
-  - [Build-in Validatoren](#build-in-validatoren)
-  - [Bonus: Komponente zum Anzeigen von Validierungsfehlern *](#bonus-komponente-zum-anzeigen-von-validierungsfehlern-)
-  - [Eigener Validator](#eigener-validator)
-  - [Parametrizable Validator](#parametrisierbarer-validator)
-  - [Bonus: Asynchronous Validator *](#bonus-asynchroner-validator-)
-  - [Bonus: Multifield Validator *](#bonus-multifield-validator-)
-  - [Bonus: Parametrizable Multifield Validator **](#bonus-parametrisierbarer-multifield-validator-)
-  - [Bonus: Asynchronous Multifield Validator ***](#bonus-asynchroner-multifield-validator-)
-  - [Bonus: Formatiertes Datum in Textfeld ***](#bonus-formatiertes-datum-in-textfeld-)
-  - [Bonus: Komponente zum Editieren eines Datums ***](#bonus-komponente-zum-editieren-eines-datums-)
--->
+- [Template Driven Forms](#angular-workshop-template-driven-forms)
+  - [Built-in validators](#built-in-validators)
+  - [Bonus: Reusable component for displaying the validation errors *](#Bonus-Reusable-component-for-displaying-the-validation-errors-)
+  - [Own validator](#Own-validator)
+  - [Parameterizable validator](#Parameterizable-validator)
+  - [Bonus: Asynchronous Validator *](#Bonus-Asynchronous-Validator-)
+  - [Bonus: Multifield Validator *](#Bonus-Multifield-Validator-)
+  - [Bonus: Parametrizable Multifield Validator **](#Bonus-Parametrizable-Multifield-Validator-)
+  - [Bonus: Asynchronous Multifield Validator ***](#Bonus-Asynchronous-Multifield-Validator-)
+  - [Bonus: Formatted date in text field ***](#Bonus-Formatted-date-in-text-field-)
+  - [Bonus: Component for editing a date ***](#Bonus-Component-for-editing-a-date-)
 
-## Build-in validators
+## Built-in validators
 
 In this exercise you will validate the entries in the search form of the ``FlightSearchComponent`` with the build-in validators ``required``, ``minlength``, ``maxlength`` and ``pattern`` and output any validation errors.
 
@@ -385,7 +383,7 @@ You can use the following procedure as a guide:
 
 8. Test your solution. **Please note** that Angular only runs asynchronous validators if none of the synchronous validators reports an error. For example, enter ``Rom`` in the whitelist of the synchronous validator. If you now search for ``Rom``, all synchronous validators will validate this value correctly and the new asynchronous validator will return an error because ``Rom`` is not entered in the database.
 
-## Bonus: Parametrizable Multifield Validator *
+## Bonus: Multifield Validator *
 
 You can also create validators that apply to a form and take multiple fields into account. Use the following information to write a validator that prohibits sightseeing flights (e.g. flights from Frankfurt to Frankfurt).
 
